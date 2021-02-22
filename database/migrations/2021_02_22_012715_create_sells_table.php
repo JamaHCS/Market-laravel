@@ -17,6 +17,7 @@ class CreateSellsTable extends Migration
             $table->id();
 
             $table->double('total')->nullable();
+            $table->integer('month')->nullable();
 
             $table->bigInteger('market_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();

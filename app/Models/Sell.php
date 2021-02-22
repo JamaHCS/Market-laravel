@@ -23,7 +23,7 @@ class Sell extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
@@ -33,7 +33,7 @@ class Sell extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function market(): BelongsTo
+    public function market()
     {
         return $this->belongsTo(Market::class, 'market_id', 'id');
     }
@@ -43,7 +43,7 @@ class Sell extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function sellDetails(): HasMany
+    public function sellDetails()
     {
         return $this->hasMany(SellDetail::class, 'sell_id', 'id');
     }

@@ -27,10 +27,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Market::create([
-            'name' => 'Tienda doña pelos'
+            'name' => 'Tienda doña pelos',
+            'user_id' => 1
         ]);
-
-        DB::insert('insert into user_market (market_id, user_id) values (?, ?)', [1, 1]);
 
         Product::factory()->count(10)->create();
 

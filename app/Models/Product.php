@@ -25,7 +25,7 @@ class Product extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
 
-    public function market(): BelongsTo
+    public function market()
     {
         return $this->belongsTo(Market::class, 'market_id', 'id');
     }
@@ -35,7 +35,7 @@ class Product extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function sellDetail(): BelongsTo
+    public function sellDetail()
     {
         return $this->belongsTo(SellDetail::class, 'product_id', 'id');
     }

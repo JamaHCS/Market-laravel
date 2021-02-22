@@ -23,7 +23,7 @@ class SellDetail extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function product(): HasOne
+    public function product()
     {
         return $this->hasOne(Product::class, 'product_id', 'id');
     }
@@ -33,7 +33,7 @@ class SellDetail extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function sell(): BelongsTo
+    public function sell()
     {
         return $this->belongsTo(Sell::class, 'sell_id', 'id');
     }

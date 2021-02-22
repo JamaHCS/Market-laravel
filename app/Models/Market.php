@@ -12,7 +12,8 @@ class Market extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
+        'user_id'
     ];
 
     /**
@@ -33,5 +34,15 @@ class Market extends Model
     public function sells(): HasMany
     {
         return $this->hasMany(Sell::class, 'market_id', 'id');
+    }
+
+    /**
+     * Get the user that owns the Market
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

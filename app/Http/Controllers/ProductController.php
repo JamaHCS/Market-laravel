@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Market;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -81,5 +83,13 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    public function soldProducts(Market $market)
+    {
+        $sells = DB::select("select product_id, name, sum(quant) 'cantidad' from products join sell_details sd on products.id = sd.product_id where market_id=? group by product_id order by 'Cantidad' asc", [$market->id]);
+        // $months = DB::select('select sells.month, count(id) from sells group by sells.month order by sells.month;', []);
+
+        return view('statistics', compact('sells'));
     }
 }
