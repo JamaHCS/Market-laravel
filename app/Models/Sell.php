@@ -16,7 +16,6 @@ class Sell extends Model
         'total',
         'market_id',
         'user_id',
-        'market_id'
     ];
 
     /**

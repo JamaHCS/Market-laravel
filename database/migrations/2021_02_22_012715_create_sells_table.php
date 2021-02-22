@@ -16,7 +16,7 @@ class CreateSellsTable extends Migration
         Schema::create('sells', function (Blueprint $table) {
             $table->id();
 
-            $table->double('total');
+            $table->double('total')->nullable();
 
             $table->bigInteger('market_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();

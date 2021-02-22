@@ -22,7 +22,8 @@ class SellFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'market_id' => 1,
+            'user_id' => 1,
         ];
     }
 }
