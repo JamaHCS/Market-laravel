@@ -11,4 +11,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('statistics/{market}', [ProductController::class, 'soldProducts'])->name('statistics');
+Route::middleware(['auth:sanctum', 'verified'])->get('statistics/{market}', [ProductController::class, 'soldProducts'])->name('statistics');
