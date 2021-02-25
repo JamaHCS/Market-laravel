@@ -13,7 +13,9 @@ class Market extends Model
 
     protected $fillable = [
         'name',
-        'user_id'
+        'logo',
+        'user_id',
+        'uuid'
     ];
 
     /**
@@ -21,7 +23,7 @@ class Market extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function products(): HasMany
+    public function products()
     {
         return $this->hasMany(Product::class, 'market_id', 'id');
     }
@@ -31,7 +33,7 @@ class Market extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function sells(): HasMany
+    public function sells()
     {
         return $this->hasMany(Sell::class, 'market_id', 'id');
     }
@@ -41,7 +43,7 @@ class Market extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }

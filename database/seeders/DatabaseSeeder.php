@@ -6,6 +6,7 @@ use App\Models\Sell;
 use App\Models\User;
 use App\Models\Market;
 use App\Models\Product;
+use App\Models\MarketUser;
 use App\Models\SellDetail;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -19,17 +20,30 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        User::create([
+        $user = User::create([
             'name' => 'Jama',
             'email' => 'jamahcs@outlook.com',
             'password' => bcrypt('acceso.jama')
         ]);
 
-        Market::create([
+        $market = Market::create([
             'name' => 'Tienda doña pelos',
-            'user_id' => 1
+            'user_id' => 1,
+            'uuid' => substr(uniqid(), 5),
         ]);
+
+        DB::insert('insert into role_on_markets (role) value (?)', ['Dueño']);
+        DB::insert('insert into role_on_markets (role) value (?)', ['Administrador']);
+        DB::insert('insert into role_on_markets (role) value (?)', ['Trabajador']);
+
+        MarketUser::create(
+            [
+                'uuid' => $market->uuid,
+                'market_id' => $market->id,
+                'user_id' => $user->id,
+                'role_id' => 1
+            ]
+        );
 
         Product::factory()->count(10)->create();
 

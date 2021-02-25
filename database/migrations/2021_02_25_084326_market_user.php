@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMarketsTable extends Migration
+class MarketUser extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,17 @@ class CreateMarketsTable extends Migration
      */
     public function up()
     {
-        Schema::create('markets', function (Blueprint $table) {
+        Schema::create('market_users', function (Blueprint $table) {
             $table->id();
 
             $table->string('uuid')->unique();
-            $table->string('name');
-            $table->text('logo')->nullable();
-            $table->bigInteger('user_id')->unsigned();
 
+            $table->bigInteger('market_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('role_id')->unsigned();
+
+            $table->foreign('market_id')->references('id')->on('markets');
+            $table->foreign('role_id')->references('id')->on('markets');
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->timestamps();
@@ -34,6 +37,6 @@ class CreateMarketsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('markets');
+        Schema::dropIfExists('market_users');
     }
 }
