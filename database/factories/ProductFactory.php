@@ -25,7 +25,8 @@ class ProductFactory extends Factory
             'name' => $this->faker->word(),
             'price' => $this->faker->randomFloat(null, 40, 100),
             'cost' => $this->faker->randomFloat(null, 10, 40),
-            'market_id' => 1
+            'market_id' => 1,
+            'image' => $this->faker->imageUrl(),
         ];
     }
 }

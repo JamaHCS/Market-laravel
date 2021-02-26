@@ -23,7 +23,7 @@ class MarketUser extends Migration
             $table->bigInteger('role_id')->unsigned();
 
             $table->foreign('market_id')->references('id')->on('markets');
-            $table->foreign('role_id')->references('id')->on('markets');
+            $table->foreign('role_id')->references('id')->on('role_on_markets');
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->timestamps();

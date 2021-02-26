@@ -22,7 +22,10 @@ class MarketFactory extends Factory
     public function definition()
     {
         return [
-
+            'name' => $this->faker->name(),
+            'logo' => $this->faker->imageUrl(),
+            'user_id' => $this->faker->numberBetween(0, 1),
+            'uuid' => substr(uniqid(), 5),
         ];
     }
 }
