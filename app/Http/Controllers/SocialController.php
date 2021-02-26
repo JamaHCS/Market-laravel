@@ -19,6 +19,7 @@ class SocialController extends Controller
 
     public function loginWithFacebook()
     {
+        // dd('hola');
         try {
             $user = Socialite::driver('facebook')->user();
             $isUser = User::where('fb_id', $user->id)->first();
