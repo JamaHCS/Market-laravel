@@ -17,9 +17,12 @@ class CreateMarketsTable extends Migration
             $table->id();
 
             $table->string('name');
+
             $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('location_id')->unsigned();
 
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('location_id')->references('id')->on('locations');
 
             $table->timestamps();
         });

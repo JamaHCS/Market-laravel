@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
 
         Market::create([
             'name' => 'Tienda doña pelos',
-            'user_id' => 1
+            'user_id' => 1,
         ]);
 
         Product::factory()->count(10)->create();

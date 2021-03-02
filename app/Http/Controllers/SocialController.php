@@ -21,15 +21,17 @@ class SocialController extends Controller
     {
         // dd('hola');
         try {
-            $user = Socialite::driver('facebook')->user();
+            $user = Socialite::driver('facebook')->stateless()->user();
             $isUser = User::where('fb_id', $user->id)->first();
 
+            // dd(Socialite::driver('facebook')->randomShit($user->id));
             if ($isUser) {
                 Auth::login($isUser);
                 return redirect('/dashboard');
             } else {
                 $createUser = User::create([
                     'name' => $user->name,
+                    'fb_token' => $user->token,
                     'email' => $user->email,
                     'fb_id' => $user->id,
                     'password' => encrypt('acceso.jama')
@@ -41,5 +43,11 @@ class SocialController extends Controller
         } catch (Exception $exception) {
             dd($exception->getMessage());
         }
+    }
+
+
+    public function gettingUserProfilePhoto($id)
+    {
+        return 'https://graph.facebook.com/v3.3/'.$id.'/picture?width=1920';
     }
 }
