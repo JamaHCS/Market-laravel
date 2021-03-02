@@ -6,6 +6,7 @@ use App\Models\Sell;
 use App\Models\User;
 use App\Models\Market;
 use App\Models\Product;
+use App\Models\Location;
 use App\Models\MarketUser;
 use App\Models\SellDetail;
 use Illuminate\Database\Seeder;
@@ -26,10 +27,17 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('acceso.jama')
         ]);
 
+        $location = Location::create([
+            // 20.654064957407833, -100.40611526026878
+            'latitude' => 20.654064957407833,
+            'longitude' => -100.40611526026878,
+        ]);
+
         $market = Market::create([
+            'uuid' => substr(uniqid(), 5),
             'name' => 'Tienda doña pelos',
             'user_id' => 1,
-            'uuid' => substr(uniqid(), 5),
+            'location_id' => $location->id
         ]);
 
         DB::insert('insert into role_on_markets (role) value (?)', ['Dueño']);
