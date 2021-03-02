@@ -19,9 +19,12 @@ class CreateMarketsTable extends Migration
             $table->string('uuid')->unique();
             $table->string('name');
             $table->text('logo')->nullable();
+
             $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('location_id')->unsigned();
 
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('location_id')->references('id')->on('locations');
 
             $table->timestamps();
         });
