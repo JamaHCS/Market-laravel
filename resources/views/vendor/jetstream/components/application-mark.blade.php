@@ -1,3 +1,4 @@
 <picture {{ $attributes }}>
-  <img src="{{ asset('/logo.png') }}" alt="logo" style="height: 3rem">
+  <img src="{{ asset('/logo.svg') }}" alt="logo" class="logo">
+
 </picture>

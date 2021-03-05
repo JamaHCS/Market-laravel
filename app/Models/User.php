@@ -3,7 +3,10 @@
 namespace App\Models;
 
 use App\Models\Market;
+use App\Models\MarketUser;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -67,8 +70,26 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function market()
+    public function markets()
     {
-        return $this->hasOne(Market::class, 'user_id', 'id');
+        $queryMarkets = DB::select('select * from market_users where user_id = ?', [Auth::user()->id]);
+        $markets = [];
+
+        foreach ($queryMarkets as $query) {
+            $market = Market::where('id', $query->market_id)->get()[0];
+            array_push($markets, $market);
+        }
+
+        return $markets;
+    }
+
+    /**
+     * Get all of the marketRelation for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function marketRelation()
+    {
+        return $this->hasMany(MarketUser::class, 'user_id', 'id');
     }
 }

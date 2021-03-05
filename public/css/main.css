@@ -1,0 +1,29 @@
+.logo {
+    max-height: 5rem;
+    /* min-height: 4rem; */
+    width: min-content;
+}
+
+.dashboard-element {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    /* display: flex;
+    width: 100%;
+    min-width: 9%; */
+    /* font-size: 40rem; */
+}
+
+.dashboard-element .dropdown-jetstream {
+    margin-left: auto;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.navigation-menu .logo {
+    align-self: flex-start;
+    justify-self: flex-start;
+    margin-left: 0;
+    margin-right: auto;
+    object-position: left;
+    height: 3rem;
+}

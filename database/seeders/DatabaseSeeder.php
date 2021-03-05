@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
         $market = Market::create([
             'uuid' => substr(uniqid(), 5),
             'name' => 'Tienda doña pelos',
+            'logo' => 'https://lh3.googleusercontent.com/proxy/a1JOw-X40mp9AZg-4YniGhaAqamQPZadqhMGBdJ7vXSQi9zMU-Y5RC4S8X3NzfsnMOieZjwQpa8sp6PHwseU78WzO19Zc6zYV1QHiDgAKiC4ZTFfEf-pKfSh-37gqu_ggw',
             'user_id' => 1,
             'location_id' => $location->id
         ]);

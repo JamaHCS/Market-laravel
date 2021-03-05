@@ -1,4 +1,5 @@
 <picture>
-  <img src="{{ asset('/logo.png') }}" alt="logo" style="max-width:6rem">
+  <img src="{{ asset('/logo.svg') }}" alt="logo" class="logo">
+
 
 </picture>

@@ -60,4 +60,14 @@ class Market extends Model
     {
         return $this->hasOne(Location::class, 'location_id', 'id');
     }
+
+    /**
+     * Get all of the marketRelations for the Market
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function marketRelations()
+    {
+        return $this->hasMany(MarketUse::class, 'market_id', 'id');
+    }
 }
