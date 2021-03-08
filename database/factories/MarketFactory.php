@@ -26,6 +26,7 @@ class MarketFactory extends Factory
             'logo' => $this->faker->imageUrl(),
             'user_id' => $this->faker->numberBetween(0, 1),
             'uuid' => substr(uniqid(), 5),
+            'type_id' => $this->faker->numberBetween(1, 4),
         ];
     }
 }

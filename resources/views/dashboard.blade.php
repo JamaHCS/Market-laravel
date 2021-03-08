@@ -1,26 +1,42 @@
 <x-app-layout>
   <x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      {{ __('Dashboard') }}
-    </h2>
+    <div class="container">
+      <div class="row">
+        <div class="col-3">
+          <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Markets') }}
+          </h2>
+        </div>
+        <div class="col-9">
+          <div class="flex-container">
+            <a href="{{ route('market.create') }}" data-toggle="tooltip" data-placement="top" title="Crear nuevo market">
+              <x-jet-secondary-button class="mt-2 mr-2" type="button">
+                <i class="fas fa-plus"></i>
+              </x-jet-secondary-button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   </x-slot>
 
   @foreach($relations as $relation)
   <div class="py-12 dashboard-element">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-      <div class="bg-white shadow-xl sm:rounded-lg">
+      <div class="bg-white shadow-xl sm:rounded-lg py-3">
         <div class="container">
           <div class="row">
 
-            <div class="col-4 dashboard-element">
+            <div class="col-2">
               <picture>
-                <img src="{{ asset('logo.svg') }}" alt="{{ $relation->market()->get()[0]->name }}" class="logo" />
+                <img src="{{ $relation->market()->get()[0]->logo }}" alt="{{ $relation->market()->get()[0]->name }}" class="logo" />
+
               </picture>
             </div>
-            <div class="col-4 dashboard-element">
+            <div class="col-7">
               <h4>{{ $relation->market()->get()[0]->name }}</h4>
             </div>
-            <div class="col-4 dashboard-element">
+            <div class="col-3">
               <x-jet-dropdown align="right" width="48">
                 <x-slot name="trigger">
                   <span class="inline-flex rounded-md">

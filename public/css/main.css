@@ -19,6 +19,16 @@
     justify-content: flex-end;
 }
 
+.dashboard-element .col-7 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .navigation-menu .logo {
     align-self: flex-start;
     justify-self: flex-start;

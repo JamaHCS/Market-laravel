@@ -18,6 +18,8 @@ class MarketUser extends Model
         'role_id'
     ];
 
+    protected $table = 'market_users';
+
     /**
      * Get the user associated with the MarketUser
      *

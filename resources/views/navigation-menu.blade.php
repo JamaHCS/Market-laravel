@@ -17,7 +17,8 @@
           </x-jet-nav-link>
           @auth
           <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-            {{ __('Dashboard') }}
+            {{ __('Markets') }}
+
           </x-jet-nav-link>
           <x-jet-nav-link href="{{ route('statistics', 1) }}" :active="request()->routeIs('statistics')">
 
@@ -110,7 +111,8 @@
         {{ __('Inicio') }}
       </x-jet-responsive-nav-link>
       <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-        {{ __('Dashboard') }}
+        {{ __('Markets') }}
+
       </x-jet-responsive-nav-link>
       <x-jet-responsive-nav-link href="{{ route('statistics', 1) }}" :active="request()->routeIs('statistics')">
 

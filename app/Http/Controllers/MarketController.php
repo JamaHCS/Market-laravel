@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Market;
+use App\Models\MarketType;
+use App\Models\MarketUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MarketController extends Controller
 {
@@ -24,7 +27,8 @@ class MarketController extends Controller
      */
     public function create()
     {
-        //
+        $types = MarketType::all();
+        return view('markets.create', compact('types'));
     }
 
     /**
@@ -35,7 +39,32 @@ class MarketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $uuid = substr(uniqid(), 5);
+
+        $file = $request->logo;
+        $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+
+        $file->move(public_path('logos', $file), 'logo-' . $uuid . '.' . $extension);
+
+        $user = Auth::user();
+
+        $market = Market::create([
+            'name' => $request->name,
+            'logo' => 'logos/'.'logo-' . $uuid . '.' . $extension,
+            'user_id' => $user->id,
+            'uuid' => $uuid,
+            'type_id' => $request->type_id
+        ]);
+
+        $relation = MarketUser::create([
+            'uuid' => $uuid,
+            'market_id' => $market->id,
+            'user_id' =>$user->id,
+            'role_id' => 1
+        ]);
+
+        dd([$market, $relation]);
     }
 
     /**

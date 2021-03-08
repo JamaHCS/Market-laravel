@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Models\Sell;
 use App\Models\Product;
 use App\Models\Location;
+use App\Models\MarketType;
+use App\Models\MarketUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -17,8 +19,8 @@ class Market extends Model
         'logo',
         'user_id',
         'uuid',
-        'user_id',
-        'location_id'
+        'location_id',
+        'type_id'
     ];
 
     /**
@@ -68,6 +70,16 @@ class Market extends Model
      */
     public function marketRelations()
     {
-        return $this->hasMany(MarketUse::class, 'market_id', 'id');
+        return $this->hasMany(MarketUser::class, 'market_id', 'id');
+    }
+
+    /**
+     * Get the type associated with the Market
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function type()
+    {
+        return $this->hasOne(MarketType::class, 'type_id', 'id');
     }
 }

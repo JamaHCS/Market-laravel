@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Market;
 use App\Models\Product;
 use App\Models\Location;
+use App\Models\MarketType;
 use App\Models\MarketUser;
 use App\Models\SellDetail;
 use Illuminate\Database\Seeder;
@@ -33,12 +34,18 @@ class DatabaseSeeder extends Seeder
             'longitude' => -100.40611526026878,
         ]);
 
+        $type = MarketType::create(['name' => 'Tienda de abarrotes']);
+        MarketType::create(['name' => 'Bazar']);
+        MarketType::create(['name' => 'Tienda de ropa']);
+        MarketType::create(['name' => 'Vendedor independiente']);
+
         $market = Market::create([
             'uuid' => substr(uniqid(), 5),
             'name' => 'Tienda doña pelos',
-            'logo' => 'https://lh3.googleusercontent.com/proxy/a1JOw-X40mp9AZg-4YniGhaAqamQPZadqhMGBdJ7vXSQi9zMU-Y5RC4S8X3NzfsnMOieZjwQpa8sp6PHwseU78WzO19Zc6zYV1QHiDgAKiC4ZTFfEf-pKfSh-37gqu_ggw',
+            'logo' => 'https://guiaimpresion.com/wp-content/uploads/2020/06/Logotipo-Amazon.jpg',
             'user_id' => 1,
-            'location_id' => $location->id
+            'location_id' => $location->id,
+            'type_id' => $type->id
         ]);
 
         DB::insert('insert into role_on_markets (role) value (?)', ['Dueño']);

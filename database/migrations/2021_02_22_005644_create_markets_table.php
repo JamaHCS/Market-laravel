@@ -21,10 +21,12 @@ class CreateMarketsTable extends Migration
             $table->text('logo')->nullable();
 
             $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('location_id')->unsigned();
+            $table->bigInteger('location_id')->unsigned()->nullable();
+            $table->bigInteger('type_id')->unsigned()->nullable();
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('location_id')->references('id')->on('locations');
+            $table->foreign('type_id')->references('id')->on('market_types');
 
             $table->timestamps();
         });
