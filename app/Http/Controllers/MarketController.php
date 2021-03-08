@@ -11,16 +11,6 @@ use Illuminate\Support\Facades\Auth;
 class MarketController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -64,7 +54,7 @@ class MarketController extends Controller
             'role_id' => 1
         ]);
 
-        dd([$market, $relation]);
+        return redirect('dashboard');
     }
 
     /**

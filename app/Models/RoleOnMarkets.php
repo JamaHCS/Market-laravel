@@ -11,7 +11,7 @@ class RoleOnMarkets extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'role',
     ];
 
     protected $table = 'role_on_markets';

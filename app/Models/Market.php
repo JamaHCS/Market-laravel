@@ -80,6 +80,6 @@ class Market extends Model
      */
     public function type()
     {
-        return $this->hasOne(MarketType::class, 'type_id', 'id');
+        return $this->hasOne(MarketType::class, 'id', 'type_id');
     }
 }

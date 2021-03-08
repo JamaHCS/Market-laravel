@@ -27,16 +27,19 @@
         <div class="container">
           <div class="row">
 
-            <div class="col-2">
-              <picture>
-                <img src="{{ $relation->market()->get()[0]->logo }}" alt="{{ $relation->market()->get()[0]->name }}" class="logo" />
-
-              </picture>
+            <div class="col-md-2">
+              <picture class="picture-logo" style="background-image: url({{ $relation->market()->get()[0]->logo }})">
+                {{-- <img src="{{ $relation->market()->get()[0]->logo }}" alt="{{ $relation->market()->get()[0]->name }}" class="logo" /> --}}
             </div>
-            <div class="col-7">
+            <div class="col-md-7">
               <h4>{{ $relation->market()->get()[0]->name }}</h4>
+              <div class="specs">
+                <span class="text-muted">{{ $relation->market()->get()[0]->type()->get()[0]->name }}</span>
+                {{ __(' | ') }}
+                <span class="text-muted">{{ $relation->role()->get()[0]->role }}</span>
+              </div>
             </div>
-            <div class="col-3">
+            <div class="col-md-3">
               <x-jet-dropdown align="right" width="48">
                 <x-slot name="trigger">
                   <span class="inline-flex rounded-md">
