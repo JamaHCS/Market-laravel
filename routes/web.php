@@ -19,3 +19,4 @@ Route::get('auth/facebook/callback', [SocialController::class, 'loginWithFaceboo
 
 Route::middleware(['auth:sanctum', 'verified'])->get('markets/create', [MarketController::class, 'create'])->name('market.create');
 Route::middleware(['auth:sanctum', 'verified'])->post('markets/store', [MarketController::class, 'store'])->name('market.store');
+Route::middleware(['auth:sanctum', 'verified'])->post('markets/config', [MarketController::class, 'config'])->name('market.config');

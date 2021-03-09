@@ -25,6 +25,10 @@
             {{ __('Estadísticas') }}
           </x-jet-nav-link>
           @endif
+          <x-jet-nav-link href="#">
+            <span onclick="console.log(test())">{{ __('User') }}</span>
+          </x-jet-nav-link>
+
         </div>
       </div>
 

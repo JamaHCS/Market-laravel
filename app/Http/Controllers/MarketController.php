@@ -101,4 +101,18 @@ class MarketController extends Controller
     {
         //
     }
+
+
+    /**
+     * Show the form for setting a config of a market.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function config(Request $request)
+    {
+        $relation = MarketUser::find($request)[0];
+        $types = MarketType::all();
+
+        return view('markets.config', compact('relation', 'types'));
+    }
 }

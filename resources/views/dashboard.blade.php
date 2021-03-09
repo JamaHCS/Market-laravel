@@ -26,10 +26,10 @@
       <div class="bg-white shadow-xl sm:rounded-lg py-3">
         <div class="container">
           <div class="row">
-
             <div class="col-md-2">
               <picture class="picture-logo" style="background-image: url({{ $relation->market()->get()[0]->logo }})">
                 {{-- <img src="{{ $relation->market()->get()[0]->logo }}" alt="{{ $relation->market()->get()[0]->name }}" class="logo" /> --}}
+              </picture>
             </div>
             <div class="col-md-7">
               <h4>{{ $relation->market()->get()[0]->name }}</h4>
@@ -57,16 +57,13 @@
                   <div class="block px-4 py-2 text-xs text-gray-400">
                     {{ __('Acciones') }}
                   </div>
-
-                  <x-jet-dropdown-link href="#">
-                    {{ __('Configuraciones') }}
-                  </x-jet-dropdown-link>
-                  <x-jet-dropdown-link href="#">
-                    {{ __('Configuraciones') }}
-                  </x-jet-dropdown-link>
-                  <x-jet-dropdown-link href="#">
-                    {{ __('Configuraciones') }}
-                  </x-jet-dropdown-link>
+                  <form action="{{ route('market.config') }}" method="post">
+                    <input type="hidden" name="relation_id" value="{{ $relation->id }}">
+                    @csrf
+                    <button type="submit" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+                      {{ __('Configuraciones') }}
+                    </button>
+                  </form>
 
                   <div class="border-t border-gray-100"></div>
 
