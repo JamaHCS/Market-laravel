@@ -4,6 +4,16 @@
   /* min-height: 4rem; */
 }
 
+.updated {
+  transition: ease 1000ms;
+  will-change: opacity;
+  opacity: 0;
+}
+
+.updated.show {
+  opacity: 1;
+}
+
 .picture-config .logo {
   margin-top: 1rem;
   height: auto;
