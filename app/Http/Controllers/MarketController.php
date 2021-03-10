@@ -32,20 +32,40 @@ class MarketController extends Controller
         // dd($request);
         $uuid = substr(uniqid(), 5);
 
-        $file = $request->logo;
-        $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
-
-        $file->move(public_path('logos', $file), 'logo-' . $uuid . '.' . $extension);
+        if ($request->type_id =='Selecciona una') {
+            $request->type_id = 1;
+        }
 
         $user = Auth::user();
 
-        $market = Market::create([
+
+        if (isset($request->logo)) {
+            $file = $request->logo;
+            $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+
+            $file->move(public_path('logos', $file), 'logo-' . $uuid . '.' . $extension);
+
+            $market = Market::create([
             'name' => $request->name,
             'logo' => 'logos/'.'logo-' . $uuid . '.' . $extension,
             'user_id' => $user->id,
             'uuid' => $uuid,
             'type_id' => $request->type_id
         ]);
+        } else {
+            $market = Market::create([
+            'name' => $request->name,
+            'logo' => 'logos/logo.svg',
+            'user_id' => $user->id,
+            'uuid' => $uuid,
+            'type_id' => $request->type_id
+        ]);
+        }
+
+
+
+
+
 
         $relation = MarketUser::create([
             'uuid' => $uuid,
