@@ -91,6 +91,11 @@
   padding-bottom: 1rem;
 }
 
+.columns {
+  display: flex;
+  flex-direction: row;
+}
+
 .flex-container {
   display: flex;
   justify-content: flex-end;
@@ -103,6 +108,14 @@
   margin-right: auto;
   object-position: left;
   height: 3rem;
+}
+
+input[aria-disabled="true"] {
+  background: #cccccc;
+}
+
+.location-form i {
+  margin-left: 0.3rem;
 }
 
 @media (max-width: 768px) {

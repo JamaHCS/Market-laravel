@@ -112,7 +112,13 @@ class MarketController extends Controller
     {
         $relation = MarketUser::find($request)[0];
         $types = MarketType::all();
+        $location = $relation->market()->get()[0]->location()->get();
 
-        return view('markets.config', compact('relation', 'types'));
+        if (count($location) == 0) {
+            return view('markets.config', compact('relation', 'types'));
+        } else {
+            $location = $location[0];
+            return view('markets.config', compact('relation', 'types', 'location'));
+        }
     }
 }

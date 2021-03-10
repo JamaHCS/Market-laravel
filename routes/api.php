@@ -18,5 +18,6 @@ Route::prefix('v1')->group(function () {
 
     Route::prefix('markets')->group(function () {
         Route::post('basic-config', [MarketController::class, 'updateBasic']);
+        Route::post('location-config', [MarketController::class, 'updateLocation']);
     });
 });

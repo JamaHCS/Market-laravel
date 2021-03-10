@@ -60,7 +60,7 @@ class Market extends Model
      */
     public function location()
     {
-        return $this->hasOne(Location::class, 'location_id', 'id');
+        return $this->hasOne(Location::class, 'id', 'location_id');
     }
 
     /**

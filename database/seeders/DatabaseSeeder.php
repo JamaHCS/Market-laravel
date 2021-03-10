@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
         $market = Market::create([
             'uuid' => substr(uniqid(), 5),
             'name' => 'Tienda doña pelos',
-            'logo' => 'https://guiaimpresion.com/wp-content/uploads/2020/06/Logotipo-Amazon.jpg',
+            'logo' => 'logos/logo.svg',
             'user_id' => 1,
             'location_id' => $location->id,
             'type_id' => $type->id
