@@ -16,9 +16,12 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->bigInteger('barcode')->nullable();
+            $table->string('brand');
             $table->text('image');
             $table->float('cost');
             $table->float('price');
+            $table->string('type');
             $table->bigInteger('market_id')->unsigned();
             $table->foreign('market_id')->references('id')->on('markets');
             $table->timestamps();

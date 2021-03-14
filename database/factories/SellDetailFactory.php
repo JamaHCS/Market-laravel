@@ -24,7 +24,7 @@ class SellDetailFactory extends Factory
     {
         $sell_id = $this->faker->numberBetween(1, 50);
         $quant = $this->faker->numberBetween(1, 5);
-        $product = Product::find($this->faker->numberBetween(1, 10));
+        $product = Product::find($this->faker->numberBetween(1, 5));
         $total = $product->price * $quant;
 
         return [
