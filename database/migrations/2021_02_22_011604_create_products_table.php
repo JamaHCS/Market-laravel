@@ -18,7 +18,6 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->bigInteger('barcode')->nullable();
             $table->string('brand');
-            $table->text('image');
             $table->float('cost');
             $table->float('price');
             $table->string('type');

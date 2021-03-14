@@ -10,6 +10,7 @@ use App\Models\Location;
 use App\Models\MarketType;
 use App\Models\MarketUser;
 use App\Models\SellDetail;
+use App\Models\ProductImage;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -61,54 +62,79 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        Product::create([
+        $cheetos = Product::create([
             'name' => 'Cheetos Flamin´ Hot 145gr',
             'type' => 'Botanas',
             'brand' => 'Frito-Lay',
             'price' => 13,
             'cost' => 10,
-            'image' => 'products/56abd7df/cheetos.png',
             'market_id' => 1
         ]);
 
-        Product::create([
+        ProductImage::create([
+            'is_url' => false,
+            'image' => 'products/56abd7df/cheetos.png',
+            'product_id' => $cheetos->id
+        ]);
+
+        $sabritas = Product::create([
             'name' => 'Sabritas Clásicas 145gr',
             'type' => 'Botanas',
             'brand' => 'Frito-Lay',
             'price' => 15,
             'cost' => 13,
-            'image' => 'products/56abd7df/sabritas.jpg',
             'market_id' => 1
         ]);
 
-        Product::create([
+        ProductImage::create([
+            'is_url' => false,
+            'image' => 'products/56abd7df/sabritas.jpg',
+            'product_id' => $sabritas->id
+        ]);
+
+        $coca = Product::create([
             'name' => 'Coca-cola 600ml',
             'brand' => 'Coca-Cola',
             'type' => 'Refrescos',
             'price' => 16,
             'cost' => 14,
-            'image' => 'products/56abd7df/coca600.png',
             'market_id' => 1
             ]);
 
-        Product::create([
+        ProductImage::create([
+            'is_url' => false,
+            'image' => 'products/56abd7df/coca600.png',
+            'product_id' => $coca->id
+        ]);
+
+        $coca2 = Product::create([
             'name' => 'Coca-cola 2l',
             'brand' => 'Coca-Cola',
             'type' => 'Refrescos',
             'price' => 30,
             'cost' => 28,
-            'image' => 'products/56abd7df/coca2.jpg',
             'market_id' => 1
         ]);
 
-        Product::create([
+        ProductImage::create([
+            'is_url' => false,
+            'image' => 'products/56abd7df/coca2.jpg',
+            'product_id' => $coca2->id
+        ]);
+
+        $kinder = Product::create([
             'name' => 'Kinder Delice 42gr',
-            'brand' => 'Ferrero ',
+            'brand' => 'Ferrero',
             'type' => 'Golosinas',
             'price' => 12,
             'cost' => 9,
-            'image' => 'products/56abd7df/kinder.jpg',
             'market_id' => 1
+        ]);
+
+        ProductImage::create([
+            'is_url' => false,
+            'image' => 'products/56abd7df/kinder.jpg',
+            'product_id' => $kinder->id
         ]);
 
         Sell::factory()->count(50)->create();

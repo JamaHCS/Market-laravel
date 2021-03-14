@@ -18,7 +18,6 @@ class Product extends Model
         'type',
         'price',
         'cost',
-        'image,',
         'market_id',
     ];
 
@@ -42,5 +41,15 @@ class Product extends Model
     public function sellDetail()
     {
         return $this->belongsTo(SellDetail::class, 'product_id', 'id');
+    }
+
+    /**
+     * Get all of the image for the Product
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function image()
+    {
+        return $this->hasMany(ProductImage::class, 'product_id', 'id');
     }
 }
