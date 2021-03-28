@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Market;
 use App\Models\Product;
+use App\Models\MarketUser;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,19 +16,12 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-    }
+        $relation = MarketUser::find($request)[0];
+        $products = $relation->market()->get()[0]->products()->get();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('markets.products.index', compact('relation', 'products'));
     }
 
     /**
@@ -37,18 +32,81 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $relation = MarketUser::find($request->relation_id);
+        $market = Market::find($relation->market_id);
+
+        $product = Product::create([
+            'name' => $request->name,
+            'brand' => $request->brand,
+            'barcode' => (isset($request->barcode)) ? $request->barcode : null,
+            'type' => $request->type,
+            'price' => $request->price,
+            'cost' => $request->cost,
+            'market_id' => $relation->market_id
+        ]);
+
+        $file = $request->productImage;
+
+        $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+        $file->move(public_path('products/'.$market->uuid.'/', $file), 'product-' . $product->id . '.' . $extension);
+
+        ProductImage::create([
+            'is_url' => false,
+            'image' => 'products/'.$market->uuid.'/product-' . $product->id . '.' . $extension,
+            'product_id' => $product->id
+        ]);
+
+        $products = $relation->market()->get()[0]->products()->get();
+
+        return view('markets.products.index', compact('relation', 'products'));
     }
 
     /**
-     * Display the specified resource.
+     * Store a newly created resource in storage.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function storeAutomatic(Request $request)
     {
-        //
+        // dd($request);
+
+        $relation = MarketUser::find($request->relation_id);
+        $market = Market::find($relation->market_id);
+
+        $product = Product::create([
+            'name' => $request->name,
+            'brand' => $request->brand,
+            'barcode' => (isset($request->barcode)) ? $request->barcode : null,
+            'type' => $request->type,
+            'price' => $request->price,
+            'cost' => $request->cost,
+            'market_id' => $relation->market_id
+        ]);
+
+        if ($request->productImage != null) {
+            $file = $request->productImage;
+
+            $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+            $file->move(public_path('products/'.$market->uuid.'/', $file), 'product-' . $product->id . '.' . $extension);
+
+            ProductImage::create([
+            'is_url' => false,
+            'image' => 'products/'.$market->uuid.'/product-' . $product->id . '.' . $extension,
+            'product_id' => $product->id
+            ]);
+        } else {
+            ProductImage::create([
+            'is_url' => true,
+            'image' => $request->imageDefault,
+            'product_id' => $product->id
+            ]);
+        }
+
+
+        $products = $relation->market()->get()[0]->products()->get();
+
+        return view('markets.products.index', compact('relation', 'products'));
     }
 
     /**
@@ -91,5 +149,25 @@ class ProductController extends Controller
         // $months = DB::select('select sells.month, count(id) from sells group by sells.month order by sells.month;', []);
 
         return view('statistics', compact('sells'));
+    }
+
+    public function howToAdd(Request $request)
+    {
+        $relation = MarketUser::find($request)[0];
+
+        return view('markets.products.howToCreate', compact('relation'));
+    }
+
+    public function automatic(Request $request)
+    {
+        $relation = MarketUser::find($request)[0];
+
+        return view('markets.products.automatic', compact('relation'));
+    }
+
+    public function manual(Request $request)
+    {
+        $relation = MarketUser::find($request)[0];
+        return view('markets.products.manual', compact('relation'));
     }
 }

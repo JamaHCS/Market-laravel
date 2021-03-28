@@ -65,9 +65,9 @@
                 {{ __('Configuraciones') }}
               </div>
 
-              {{-- <x-jet-dropdown-link href="{{ route('profile.show') }}">
-              {{ __('Mi perfil') }}
-              </x-jet-dropdown-link> --}}
+              <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                {{ __('Mi perfil') }}
+              </x-jet-dropdown-link>
 
               @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
               <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">

@@ -17,6 +17,19 @@ Route::middleware(['auth:sanctum', 'verified'])->get('statistics/{market}', [Pro
 Route::get('auth/facebook', [SocialController::class, 'facebookRedirect']);
 Route::get('auth/facebook/callback', [SocialController::class, 'loginWithFacebook']);
 
-Route::middleware(['auth:sanctum', 'verified'])->get('markets/create', [MarketController::class, 'create'])->name('market.create');
-Route::middleware(['auth:sanctum', 'verified'])->post('markets/store', [MarketController::class, 'store'])->name('market.store');
-Route::middleware(['auth:sanctum', 'verified'])->post('markets/config', [MarketController::class, 'config'])->name('market.config');
+Route::prefix('markets')->group(function () {
+    Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+        Route::get('create', [MarketController::class, 'create'])->name('market.create');
+        Route::post('store', [MarketController::class, 'store'])->name('market.store');
+        Route::post('config', [MarketController::class, 'config'])->name('market.config');
+
+        Route::prefix('products')->group(function () {
+            Route::post('/', [ProductController::class, 'index'])->name('market.products.show');
+            Route::post('how', [ProductController::class, 'howToAdd'])->name('market.products.how');
+            Route::post('/create/manual', [ProductController::class, 'manual'])->name('market.products.manual');
+            Route::post('/create/automatic', [ProductController::class, 'automatic'])->name('market.products.automatic');
+            Route::post('/store/manual', [ProductController::class, 'store'])->name('market.products.store');
+            Route::post('/store/automatic', [ProductController::class, 'storeAutomatic'])->name('market.products.store.automatic');
+        });
+    });
+});

@@ -9,9 +9,9 @@
         </div>
         <div class="col-9">
           <div class="flex-container">
-            <a href="{{ route('market.create') }}" data-toggle="tooltip" data-placement="top" title="Crear nuevo market">
+            <a href="{{ route('market.create') }}" class="btn-new" data-toggle="tooltip" data-placement="top" title="Crear nuevo market">
               <x-jet-secondary-button class="mt-2 mr-2" type="button">
-                <i class="fas fa-plus"></i>
+                <i class="fas fa-plus"></i> Nuevo
               </x-jet-secondary-button>
             </a>
           </div>
@@ -53,19 +53,35 @@
                 </x-slot>
 
                 <x-slot name="content">
-                  <!-- Account Management -->
+                  <!-- Market Management -->
                   <div class="block px-4 py-2 text-xs text-gray-400">
                     {{ __('Acciones') }}
                   </div>
+
+                  <!-- Configuration -->
                   <form action="{{ route('market.config') }}" method="post">
                     <input type="hidden" name="relation_id" value="{{ $relation->id }}">
                     @csrf
-                    <button type="submit" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+                    <button type="submit" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out w-full">
+
                       {{ __('Configuraciones') }}
+                    </button>
+                  </form>
+                  <div class="border-t border-gray-100"></div>
+
+                  <!-- Products Management -->
+                  <form action="{{ route('market.products.show') }}" method="post">
+
+                    <input type="hidden" name="relation_id" value="{{ $relation->id }}">
+                    @csrf
+                    <button type="submit" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out w-full">
+
+                      {{ __('Productos') }}
                     </button>
                   </form>
 
                   <div class="border-t border-gray-100"></div>
+
 
                   <!-- Authentication -->
                 </x-slot>

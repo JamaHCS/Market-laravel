@@ -25,4 +25,13 @@ class ProductImage extends Model
     {
         return $this->belongsTo(Product::class, 'product_id', 'id');
     }
+
+    public function getUrlAttribute()
+    {
+        if ($this->is_url) {
+            return $this->image;
+        } else {
+            return url('/')."/".$this->image;
+        }
+    }
 }

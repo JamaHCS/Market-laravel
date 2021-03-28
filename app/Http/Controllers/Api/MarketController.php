@@ -70,4 +70,41 @@ class MarketController extends Controller
         }
         return response()->json([$location, $market], 200);
     }
+
+    public function gettingProduct($barcode)
+    {
+        // https://fr-es.openfoodfacts.org/producto/7501031360024/manzanita-sol-pepsi
+
+        $url  = 'https://fr-es.openfoodfacts.org/producto/'. $barcode;
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        $data = curl_exec($ch);
+        curl_close($ch);
+
+        $init = strpos($data, "<a href=") + 10;
+        $end = strlen($data) - strpos($data, ">here</a>") +1;
+
+        $sub = substr($data, $init, -$end);
+
+        $result = $this->gettingData($sub);
+
+        return response()->json($result);
+    }
+
+    private function gettingData($str)
+    {
+        $url = "https://fr-es.openfoodfacts.org/".$str;
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        $data = curl_exec($ch);
+        curl_close($ch);
+
+        return $data;
+    }
 }
