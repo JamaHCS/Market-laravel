@@ -19,6 +19,7 @@ class Product extends Model
         'price',
         'cost',
         'market_id',
+        'is_active'
     ];
 
 

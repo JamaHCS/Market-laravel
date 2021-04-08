@@ -39,7 +39,13 @@
             <h5 class="card-title">{{ $product->name }}</h5>
             <p class="card-text mb-0"><span class="mr-2 font-weight-bold">Precio:</span>${{ $product->price }}</p>
             <p class="card-text"><span class="mr-2 font-weight-bold">Costo:</span>${{ $product->cost }}</p>
-            <a href="#" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">Editar</a>
+
+            <form action="{{ route('market.products.edit') }}" method="post">
+              <input type="hidden" name="product_id" value="{{ $product->id }}">
+              <input type="hidden" name="relation_id" value="{{ $relation->id }}">
+              @csrf
+              <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">Editar</button>
+            </form>
           </div>
         </div>
       </div>

@@ -30,6 +30,9 @@ Route::prefix('markets')->group(function () {
             Route::post('/create/automatic', [ProductController::class, 'automatic'])->name('market.products.automatic');
             Route::post('/store/manual', [ProductController::class, 'store'])->name('market.products.store');
             Route::post('/store/automatic', [ProductController::class, 'storeAutomatic'])->name('market.products.store.automatic');
+            Route::post('/edit', [ProductController::class, 'edit'])->name('market.products.edit');
+            Route::post('/update', [ProductController::class, 'update'])->name('market.products.update');
+            Route::post('/destroy', [ProductController::class, 'destroyed'])->name('market.products.destroy');
         });
     });
 });

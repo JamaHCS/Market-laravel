@@ -19,7 +19,14 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $relation = MarketUser::find($request)[0];
-        $products = $relation->market()->get()[0]->products()->get();
+        $productsMarket = $relation->market()->get()[0]->products()->get();
+        $products = [];
+
+        foreach ($productsMarket as $product) {
+            if ($product->is_active) {
+                array_push($products, $product);
+            }
+        }
 
         return view('markets.products.index', compact('relation', 'products'));
     }
@@ -56,7 +63,14 @@ class ProductController extends Controller
             'product_id' => $product->id
         ]);
 
-        $products = $relation->market()->get()[0]->products()->get();
+        $productsMarket = $relation->market()->get()[0]->products()->get();
+        $products = [];
+
+        foreach ($productsMarket as $product) {
+            if ($product->is_active) {
+                array_push($products, $product);
+            }
+        }
 
         return view('markets.products.index', compact('relation', 'products'));
     }
@@ -104,7 +118,14 @@ class ProductController extends Controller
         }
 
 
-        $products = $relation->market()->get()[0]->products()->get();
+        $productsMarket = $relation->market()->get()[0]->products()->get();
+        $products = [];
+
+        foreach ($productsMarket as $product) {
+            if ($product->is_active) {
+                array_push($products, $product);
+            }
+        }
 
         return view('markets.products.index', compact('relation', 'products'));
     }
@@ -115,9 +136,20 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Request $request)
     {
-        //
+        // dd($request);
+        $relation = MarketUser::find($request->relation_id);
+        $productsMarket = $relation->market()->get()[0]->products()->get();
+        $products = [];
+
+        foreach ($productsMarket as $product) {
+            if ($product->is_active) {
+                array_push($products, $product);
+            }
+        }
+
+        return view('markets.products.edit', compact('product', 'relation'));
     }
 
     /**
@@ -127,9 +159,48 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request)
     {
-        //
+        $relation = MarketUser::find($request->relation_id);
+        $product = Product::find($request->product_id);
+        $market = Market::find($relation->market_id);
+
+        $product->update([
+            'name' => $request->name,
+            'brand' => $request->brand,
+            'barcode' => (isset($request->barcode)) ? $request->barcode : $product->barcode,
+            'type' => $request->type,
+            'price' => $request->price,
+            'cost' => $request->cost,
+            'market_id' => $relation->market_id
+        ]);
+
+        if (isset($request->productImage)) {
+            $productImage = $product->image()->get()[0];
+
+            $file = $request->productImage;
+
+            $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+            $file->move(public_path('products/'.$market->uuid.'/', $file), 'product-' . $product->id . '.' . $extension);
+
+            $productImage->update([
+                    'is_url' => false,
+                    'image' => 'products/'.$market->uuid.'/product-' . $product->id . '.' . $extension,
+                    'product_id' => $product->id
+            ]);
+        }
+
+
+        $productsMarket = $relation->market()->get()[0]->products()->get();
+        $products = [];
+
+        foreach ($productsMarket as $product) {
+            if ($product->is_active) {
+                array_push($products, $product);
+            }
+        }
+
+        return view('markets.products.index', compact('relation', 'products'));
     }
 
     /**
@@ -138,9 +209,26 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroyed(Request $request)
     {
-        //
+        $relation = MarketUser::find($request->relation_id);
+        $product = Product::find($request->product_id);
+        $market = Market::find($relation->market_id);
+
+        $product->update([
+            'is_active' => false
+        ]);
+
+        $productsMarket = $relation->market()->get()[0]->products()->get();
+        $products = [];
+
+        foreach ($productsMarket as $product) {
+            if ($product->is_active) {
+                array_push($products, $product);
+            }
+        }
+
+        return view('markets.products.index', compact('relation', 'products'));
     }
 
     public function soldProducts(Market $market)

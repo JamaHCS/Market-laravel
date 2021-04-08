@@ -63,6 +63,7 @@ class DatabaseSeeder extends Seeder
         );
 
         $cheetos = Product::create([
+            'is_active' => true,
             'name' => 'Cheetos Flamin´ Hot 145gr',
             'type' => 'Botanas',
             'brand' => 'Frito-Lay',
@@ -78,6 +79,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $sabritas = Product::create([
+            'is_active' => true,
             'name' => 'Sabritas Clásicas 145gr',
             'type' => 'Botanas',
             'brand' => 'Frito-Lay',
@@ -93,6 +95,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $coca = Product::create([
+            'is_active' => true,
             'name' => 'Coca-cola 600ml',
             'brand' => 'Coca-Cola',
             'type' => 'Refrescos',
@@ -108,6 +111,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $coca2 = Product::create([
+            'is_active' => true,
             'name' => 'Coca-cola 2l',
             'brand' => 'Coca-Cola',
             'type' => 'Refrescos',
@@ -123,6 +127,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $kinder = Product::create([
+            'is_active' => true,
             'name' => 'Kinder Delice 42gr',
             'brand' => 'Ferrero',
             'type' => 'Golosinas',
