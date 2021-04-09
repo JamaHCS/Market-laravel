@@ -14,6 +14,8 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 Route::middleware(['auth:sanctum', 'verified'])->get('statistics/{market}', [ProductController::class, 'soldProducts'])->name('statistics');
 
+Route::post('password-checking', [DashboardController::class, 'checkingPassword'])->name('checkingPassword');
+
 Route::get('auth/facebook', [SocialController::class, 'facebookRedirect']);
 Route::get('auth/facebook/callback', [SocialController::class, 'loginWithFacebook']);
 

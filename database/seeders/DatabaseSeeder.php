@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
         $user = User::create([
             'name' => 'Jama',
             'email' => 'jamahcs@outlook.com',
-            'password' => bcrypt('acceso.jama')
+            'password' => bcrypt('acceso.jama'),
+            'password_verified' => true
         ]);
 
         $location = Location::create([
