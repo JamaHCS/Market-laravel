@@ -11,6 +11,7 @@ use App\Models\MarketType;
 use App\Models\MarketUser;
 use App\Models\SellDetail;
 use App\Models\ProductImage;
+use App\Models\RoleOnMarkets;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -30,121 +31,121 @@ class DatabaseSeeder extends Seeder
             'password_verified' => true
         ]);
 
-        $location = Location::create([
-            // 20.654064957407833, -100.40611526026878
-            'latitude' => 20.654064957407833,
-            'longitude' => -100.40611526026878,
-        ]);
+        // $location = Location::create([
+        //     // 20.654064957407833, -100.40611526026878
+        //     'latitude' => 20.654064957407833,
+        //     'longitude' => -100.40611526026878,
+        // ]);
 
         $type = MarketType::create(['name' => 'Tienda de abarrotes']);
         MarketType::create(['name' => 'Bazar']);
         MarketType::create(['name' => 'Tienda de ropa']);
         MarketType::create(['name' => 'Vendedor independiente']);
 
-        $market = Market::create([
-            'uuid' => '56abd7df',
-            'name' => 'Tienda doña pelos',
-            'logo' => 'logos/logo.svg',
-            'user_id' => 1,
-            'location_id' => $location->id,
-            'type_id' => $type->id
-        ]);
+        // $market = Market::create([
+        //     'uuid' => '56abd7df',
+        //     'name' => 'Tienda doña pelos',
+        //     'logo' => 'logos/logo.svg',
+        //     'user_id' => 1,
+        //     'location_id' => $location->id,
+        //     'type_id' => $type->id
+        // ]);
 
-        DB::insert('insert into role_on_markets (role) value (?)', ['Dueño']);
-        DB::insert('insert into role_on_markets (role) value (?)', ['Administrador']);
-        DB::insert('insert into role_on_markets (role) value (?)', ['Trabajador']);
+        RoleOnMarkets::create(['role' => 'Dueño']);
+        RoleOnMarkets::create(['role' => 'Administrador']);
+        RoleOnMarkets::create(['role' => 'Trabajador']);
 
-        MarketUser::create(
-            [
-                'uuid' => $market->uuid,
-                'market_id' => $market->id,
-                'user_id' => $user->id,
-                'role_id' => 1
-            ]
-        );
+        // MarketUser::create(
+        //     [
+        //         'uuid' => $market->uuid,
+        //         'market_id' => $market->id,
+        //         'user_id' => $user->id,
+        //         'role_id' => 1
+        //     ]
+        // );
 
-        $cheetos = Product::create([
-            'is_active' => true,
-            'name' => 'Cheetos Flamin´ Hot 145gr',
-            'type' => 'Botanas',
-            'brand' => 'Frito-Lay',
-            'price' => 13,
-            'cost' => 10,
-            'market_id' => 1
-        ]);
+        // $cheetos = Product::create([
+        //     'is_active' => true,
+        //     'name' => 'Cheetos Flamin´ Hot 145gr',
+        //     'type' => 'Botanas',
+        //     'brand' => 'Frito-Lay',
+        //     'price' => 13,
+        //     'cost' => 10,
+        //     'market_id' => 1
+        // ]);
 
-        ProductImage::create([
-            'is_url' => false,
-            'image' => 'products/56abd7df/cheetos.png',
-            'product_id' => $cheetos->id
-        ]);
+        // ProductImage::create([
+        //     'is_url' => false,
+        //     'image' => 'products/56abd7df/cheetos.png',
+        //     'product_id' => $cheetos->id
+        // ]);
 
-        $sabritas = Product::create([
-            'is_active' => true,
-            'name' => 'Sabritas Clásicas 145gr',
-            'type' => 'Botanas',
-            'brand' => 'Frito-Lay',
-            'price' => 15,
-            'cost' => 13,
-            'market_id' => 1
-        ]);
+        // $sabritas = Product::create([
+        //     'is_active' => true,
+        //     'name' => 'Sabritas Clásicas 145gr',
+        //     'type' => 'Botanas',
+        //     'brand' => 'Frito-Lay',
+        //     'price' => 15,
+        //     'cost' => 13,
+        //     'market_id' => 1
+        // ]);
 
-        ProductImage::create([
-            'is_url' => false,
-            'image' => 'products/56abd7df/sabritas.jpg',
-            'product_id' => $sabritas->id
-        ]);
+        // ProductImage::create([
+        //     'is_url' => false,
+        //     'image' => 'products/56abd7df/sabritas.jpg',
+        //     'product_id' => $sabritas->id
+        // ]);
 
-        $coca = Product::create([
-            'is_active' => true,
-            'name' => 'Coca-cola 600ml',
-            'brand' => 'Coca-Cola',
-            'type' => 'Refrescos',
-            'price' => 16,
-            'cost' => 14,
-            'market_id' => 1
-            ]);
+        // $coca = Product::create([
+        //     'is_active' => true,
+        //     'name' => 'Coca-cola 600ml',
+        //     'brand' => 'Coca-Cola',
+        //     'type' => 'Refrescos',
+        //     'price' => 16,
+        //     'cost' => 14,
+        //     'market_id' => 1
+        //     ]);
 
-        ProductImage::create([
-            'is_url' => false,
-            'image' => 'products/56abd7df/coca600.png',
-            'product_id' => $coca->id
-        ]);
+        // ProductImage::create([
+        //     'is_url' => false,
+        //     'image' => 'products/56abd7df/coca600.png',
+        //     'product_id' => $coca->id
+        // ]);
 
-        $coca2 = Product::create([
-            'is_active' => true,
-            'name' => 'Coca-cola 2l',
-            'brand' => 'Coca-Cola',
-            'type' => 'Refrescos',
-            'price' => 30,
-            'cost' => 28,
-            'market_id' => 1
-        ]);
+        // $coca2 = Product::create([
+        //     'is_active' => true,
+        //     'name' => 'Coca-cola 2l',
+        //     'brand' => 'Coca-Cola',
+        //     'type' => 'Refrescos',
+        //     'price' => 30,
+        //     'cost' => 28,
+        //     'market_id' => 1
+        // ]);
 
-        ProductImage::create([
-            'is_url' => false,
-            'image' => 'products/56abd7df/coca2.jpg',
-            'product_id' => $coca2->id
-        ]);
+        // ProductImage::create([
+        //     'is_url' => false,
+        //     'image' => 'products/56abd7df/coca2.jpg',
+        //     'product_id' => $coca2->id
+        // ]);
 
-        $kinder = Product::create([
-            'is_active' => true,
-            'name' => 'Kinder Delice 42gr',
-            'brand' => 'Ferrero',
-            'type' => 'Golosinas',
-            'price' => 12,
-            'cost' => 9,
-            'market_id' => 1
-        ]);
+        // $kinder = Product::create([
+        //     'is_active' => true,
+        //     'name' => 'Kinder Delice 42gr',
+        //     'brand' => 'Ferrero',
+        //     'type' => 'Golosinas',
+        //     'price' => 12,
+        //     'cost' => 9,
+        //     'market_id' => 1
+        // ]);
 
-        ProductImage::create([
-            'is_url' => false,
-            'image' => 'products/56abd7df/kinder.jpg',
-            'product_id' => $kinder->id
-        ]);
+        // ProductImage::create([
+        //     'is_url' => false,
+        //     'image' => 'products/56abd7df/kinder.jpg',
+        //     'product_id' => $kinder->id
+        // ]);
 
-        Sell::factory()->count(50)->create();
+        // Sell::factory()->count(50)->create();
 
-        SellDetail::factory()->count(200)->create();
+        // SellDetail::factory()->count(200)->create();
     }
 }

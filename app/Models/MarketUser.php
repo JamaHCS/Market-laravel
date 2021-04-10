@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\Market;
 use App\Models\RoleOnMarkets;
-use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class MarketUser extends Model
@@ -18,7 +18,7 @@ class MarketUser extends Model
         'role_id'
     ];
 
-    protected $table = 'market_users';
+    protected $collection = 'market_users';
 
     /**
      * Get the user associated with the MarketUser

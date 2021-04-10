@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\Market;
-use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class MarketType extends Model

@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Models\User;
 use App\Models\Market;
 use App\Models\SellDetail;
-use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Sell extends Model

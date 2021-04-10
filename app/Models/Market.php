@@ -7,7 +7,7 @@ use App\Models\Product;
 use App\Models\Location;
 use App\Models\MarketType;
 use App\Models\MarketUser;
-use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Market extends Model

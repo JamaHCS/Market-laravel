@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model;
 use App\Models\MarketUser;
 
 class RoleOnMarkets extends Model
@@ -14,7 +14,7 @@ class RoleOnMarkets extends Model
         'role',
     ];
 
-    protected $table = 'role_on_markets';
+    protected $collection = 'role_on_markets';
 
     /**
      * Get the marketRelation that owns the RoleOnMarkets
