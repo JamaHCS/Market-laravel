@@ -59,7 +59,7 @@
                                         photoPreview = e.target.result;
                                     };
                                     reader.readAsDataURL($refs.photo.files[0]);
-                            " name="productImage" required />
+                            " name="productImage" />
 
                           <x-jet-label for="productImage" value="{{ __('Logo del comercio') }}" />
                           <div class="mt-2" x-show="photoPreview">

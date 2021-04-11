@@ -49,7 +49,7 @@
                                     reader.readAsDataURL($refs.photo.files[0]);
                             " name="productImage" required />
 
-                    <x-jet-label for="productImage" value="{{ __('Logo del comercio') }}" />
+                    <x-jet-label for="productImage" value="{{ __('Imagen del articulo') }}" />
                     <div class="mt-2" x-show="photoPreview">
                       <span class="block rounded-full w-20 h-20" x-bind:style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'">
                       </span>

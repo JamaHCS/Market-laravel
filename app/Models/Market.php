@@ -30,7 +30,7 @@ class Market extends Model
      */
     public function products()
     {
-        return $this->hasMany(Product::class, 'market_id', 'id');
+        return $this->hasMany(Product::class);
     }
 
     /**
@@ -40,7 +40,7 @@ class Market extends Model
      */
     public function sells()
     {
-        return $this->hasMany(Sell::class, 'market_id', 'id');
+        return $this->hasMany(Sell::class);
     }
 
     /**
@@ -50,7 +50,7 @@ class Market extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -60,7 +60,7 @@ class Market extends Model
      */
     public function location()
     {
-        return $this->hasOne(Location::class, 'id', 'location_id');
+        return $this->belongsTo(Location::class);
     }
 
     /**
@@ -70,7 +70,7 @@ class Market extends Model
      */
     public function marketRelations()
     {
-        return $this->hasMany(MarketUser::class, 'market_id', 'id');
+        return $this->hasMany(MarketUser::class);
     }
 
     /**
@@ -80,6 +80,6 @@ class Market extends Model
      */
     public function type()
     {
-        return $this->hasOne(MarketType::class, 'id', 'type_id');
+        return $this->belongsTo(MarketType::class);
     }
 }

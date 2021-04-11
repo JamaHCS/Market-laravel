@@ -6,6 +6,7 @@ use App\Models\Market;
 use App\Models\MarketType;
 use App\Models\MarketUser;
 use Illuminate\Http\Request;
+use App\Models\RoleOnMarkets;
 use Illuminate\Support\Facades\Auth;
 
 class MarketController extends Controller
@@ -31,9 +32,10 @@ class MarketController extends Controller
     {
         // dd($request);
         $uuid = substr(uniqid(), 5);
+        $types = MarketType::all();
 
         if ($request->type_id =='Selecciona una') {
-            $request->type_id = 1;
+            $request->type_id = $types[0]->id;
         }
 
         $user = Auth::user();
@@ -64,14 +66,16 @@ class MarketController extends Controller
 
 
 
+        $roles = RoleOnMarkets::all();
 
+        // dd($roles);
 
 
         $relation = MarketUser::create([
             'uuid' => $uuid,
             'market_id' => $market->id,
             'user_id' =>$user->id,
-            'role_id' => 1
+            'role_id' => $roles[0]->id
         ]);
 
         return redirect('dashboard');

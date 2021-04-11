@@ -22,6 +22,8 @@ class ProductController extends Controller
         $productsMarket = $relation->market()->get()[0]->products()->get();
         $products = [];
 
+        // dd($productsMarket);
+
         foreach ($productsMarket as $product) {
             if ($product->is_active) {
                 array_push($products, $product);
@@ -49,7 +51,8 @@ class ProductController extends Controller
             'type' => $request->type,
             'price' => $request->price,
             'cost' => $request->cost,
-            'market_id' => $relation->market_id
+            'market_id' => $relation->market_id,
+            'is_active' => true
         ]);
 
         $file = $request->productImage;

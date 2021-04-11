@@ -14,7 +14,7 @@ class RoleOnMarkets extends Model
         'role',
     ];
 
-    protected $collection = 'role_on_markets';
+    protected $table = 'role_on_markets';
 
     /**
      * Get the marketRelation that owns the RoleOnMarkets
@@ -23,6 +23,6 @@ class RoleOnMarkets extends Model
      */
     public function marketRelation()
     {
-        return $this->belongsTo(MarketUser::class, 'role_id', 'id');
+        return $this->belongsTo(MarketUser::class);
     }
 }

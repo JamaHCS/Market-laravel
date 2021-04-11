@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Market;
+use App\Models\MarketUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,6 +19,8 @@ class DashboardController extends Controller
         if (!Auth::user()->password_verified) {
             return view('profile.checking-password', compact('relations'));
         }
+        // dd(MarketUser::all());
+        // dd($relations[0]->market()->get());
 
         return view('dashboard', compact('relations'));
     }

@@ -18,7 +18,7 @@ class MarketUser extends Model
         'role_id'
     ];
 
-    protected $collection = 'market_users';
+    protected $table = 'market_users';
 
     /**
      * Get the user associated with the MarketUser
@@ -27,7 +27,7 @@ class MarketUser extends Model
      */
     public function user()
     {
-        return $this->hasOne(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -37,7 +37,7 @@ class MarketUser extends Model
      */
     public function market()
     {
-        return $this->hasOne(Market::class, 'id', 'market_id');
+        return $this->belongsTo(Market::class);
     }
 
     /**
@@ -47,6 +47,6 @@ class MarketUser extends Model
      */
     public function role()
     {
-        return $this->hasOne(RoleOnMarkets::class, 'id', 'role_id');
+        return $this->belongsTo(RoleOnMarkets::class);
     }
 }
