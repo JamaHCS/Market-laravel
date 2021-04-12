@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Sell;
+use App\Models\User;
+use App\Models\Market;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SellFactory extends Factory
@@ -21,9 +23,12 @@ class SellFactory extends Factory
      */
     public function definition()
     {
+        $market = Market::first();
+        $user = User::first();
+
         return [
-            'market_id' => 1,
-            'user_id' => 1,
+            'market_id' => $market->id,
+            'user_id' => $user->id,
         ];
     }
 }
