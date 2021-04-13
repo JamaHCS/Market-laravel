@@ -18,6 +18,7 @@ class CreateSellsTable extends Migration
 
             $table->bigInteger('market_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
+            $table->boolean('is_active');
 
             $table->foreign('market_id')->references('id')->on('markets');
             $table->foreign('user_id')->references('id')->on('users');

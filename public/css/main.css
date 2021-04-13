@@ -1,3 +1,21 @@
+.container-image-product {
+  overflow: hidden;
+  max-height: 4rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-image-product img {
+  max-height: 4rem;
+  width: auto;
+}
+
+.paginate p {
+  display: none;
+}
+
 #automatic-result {
   display: none;
 }

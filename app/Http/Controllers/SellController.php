@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sell;
+use App\Models\Market;
+use App\Models\MarketUser;
 use Illuminate\Http\Request;
 
 class SellController extends Controller
@@ -12,9 +14,16 @@ class SellController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        // dd($id);
+        $relation = MarketUser::find($id);
+        $market = Market::find($relation->market_id);
+        $sells = Sell::where('market_id', '=', $market->id)->paginate(7);
+
+        // dd($relation);
+
+        return view('sells.index', compact('sells', 'relation'));
     }
 
     /**
@@ -28,58 +37,25 @@ class SellController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  \App\Models\Sell  $sell
      * @return \Illuminate\Http\Response
      */
-    public function show(Sell $sell)
+    public function show(Request $request)
     {
-        //
+        $sell = Sell::find($request->sell_id);
+        $relation = MarketUser::find($request->relation_id);
+
+        // dd([$sell, $relation]);
+        return view('sells.show', compact('sell', 'relation'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Sell  $sell
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Sell $sell)
+    public function delete(Request $request)
     {
-        //
-    }
+        $sell = Sell::find($request->sell_id);
+        $sell->update(['is_active' => false]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Sell  $sell
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Sell $sell)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Sell  $sell
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Sell $sell)
-    {
-        //
+        return redirect('dashboard');
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SellController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\MarketController;
 use App\Http\Controllers\SocialController;
@@ -18,6 +19,14 @@ Route::post('password-checking', [DashboardController::class, 'checkingPassword'
 
 Route::get('auth/facebook', [SocialController::class, 'facebookRedirect']);
 Route::get('auth/facebook/callback', [SocialController::class, 'loginWithFacebook']);
+
+Route::prefix('sells')->group(function () {
+    Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+        Route::get('/{id}', [SellController::class, 'index'])->name('sells.index');
+        Route::post('sell', [SellController::class, 'show'])->name('sells.show');
+        Route::post('sell/delete', [SellController::class, 'delete'])->name('sells.delete');
+    });
+});
 
 Route::prefix('markets')->group(function () {
     Route::middleware(['auth:sanctum', 'verified'])->group(function () {
