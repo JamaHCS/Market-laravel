@@ -6,6 +6,10 @@
           <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Agregar producto') }}
           </h2>
+          <x-jet-secondary-button type="button" class="btn-new mt-2 mr-2" onclick="history.back()">
+            <i class="fas fa-angle-double-left"></i> Regresar
+          </x-jet-secondary-button>
+
         </div>
       </div>
     </div>

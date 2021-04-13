@@ -20,15 +20,8 @@
             {{ __('Markets') }}
 
           </x-jet-nav-link>
-          <x-jet-nav-link href="{{ route('statistics', 1) }}" :active="request()->routeIs('statistics')">
 
-            {{ __('Estadísticas') }}
-          </x-jet-nav-link>
           @endif
-          <x-jet-nav-link href="#">
-            <span onclick="console.log(test())">{{ __('User') }}</span>
-          </x-jet-nav-link>
-
         </div>
       </div>
 

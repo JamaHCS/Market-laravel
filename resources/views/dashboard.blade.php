@@ -83,7 +83,17 @@
                   <div class="border-t border-gray-100"></div>
 
 
-                  <!-- Authentication -->
+                  <!-- Statistics -->
+                  <form action="{{ route('statistics') }}" method="post">
+                    <input type="hidden" name="market_id" value="{{ $relation->market_id }}">
+                    @csrf
+                    <button type="submit" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out w-full">
+                      {{ __('Estadisticas') }}
+                    </button>
+                  </form>
+
+                  <div class="border-t border-gray-100"></div>
+
                 </x-slot>
               </x-jet-dropdown>
             </div>

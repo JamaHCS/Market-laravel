@@ -231,9 +231,9 @@ class ProductController extends Controller
         return view('markets.products.index', compact('relation', 'products'));
     }
 
-    public function soldProducts(Market $market)
+    public function soldProducts(Request $request)
     {
-        $sells = DB::select("select product_id, name, sum(quant) 'cantidad' from products join sell_details sd on products.id = sd.product_id where market_id=? group by product_id order by 'Cantidad' asc", [$market->id]);
+        $sells = DB::select("select product_id, name, sum(quant) 'cantidad' from products join sell_details sd on products.id = sd.product_id where market_id=? group by product_id order by 'Cantidad' asc", [$request->market_id]);
         // $months = DB::select('select sells.month, count(id) from sells group by sells.month order by sells.month;', []);
 
         return view('statistics', compact('sells'));

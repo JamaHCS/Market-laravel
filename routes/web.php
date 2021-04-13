@@ -12,7 +12,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-Route::middleware(['auth:sanctum', 'verified'])->get('statistics/{market}', [ProductController::class, 'soldProducts'])->name('statistics');
+Route::middleware(['auth:sanctum', 'verified'])->post('statistics/', [ProductController::class, 'soldProducts'])->name('statistics');
 
 Route::post('password-checking', [DashboardController::class, 'checkingPassword'])->name('checkingPassword');
 
