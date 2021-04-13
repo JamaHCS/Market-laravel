@@ -25,6 +25,8 @@ Route::prefix('sells')->group(function () {
         Route::get('/{id}', [SellController::class, 'index'])->name('sells.index');
         Route::post('sell', [SellController::class, 'show'])->name('sells.show');
         Route::post('sell/delete', [SellController::class, 'delete'])->name('sells.delete');
+        Route::post('selling', [SellController::class, 'create'])->name('sells.create');
+        Route::post('sold', [SellController::class, 'store'])->name('sells.store');
     });
 });
 

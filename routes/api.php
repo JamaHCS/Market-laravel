@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\api\MarketController;
+use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\StatisticController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -21,4 +22,7 @@ Route::prefix('v1')->group(function () {
         Route::post('location-config', [MarketController::class, 'updateLocation']);
         Route::get('barcode/{barcode}', [MarketController::class, 'gettingProduct']);
     });
+
+    Route::post('product', [SearchController::class, 'search'])->name('search');
+    Route::get('products/{market}', [SearchController::class, 'products'])->name('products');
 });

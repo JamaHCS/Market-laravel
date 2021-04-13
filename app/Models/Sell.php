@@ -13,7 +13,6 @@ class Sell extends Model
     use HasFactory;
 
     protected $fillable = [
-        'total',
         'market_id',
         'user_id',
         'is_active'

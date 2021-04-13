@@ -14,7 +14,7 @@
         </div>
         <div class="col-9">
           <div class="flex-container">
-            <form action="" method="post">
+            <form action="{{ route('sells.create') }}" method="post">
               <input type="hidden" name="relation_id" value="{{ $relation->id }}">
               @csrf
               <x-jet-secondary-button class="btn-new mt-2 mr-2" type="submit">
