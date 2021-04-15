@@ -23,6 +23,7 @@ class ApiUserResource extends JsonResource
             $toPush->role = $relation->role()->get()[0]->role;
             $toPush->logo = url('/')."/".$toPush->logo;
             $toPush->type = $toPush->type()->get()[0]->name;
+            $toPush->relation_id = $relation->id;
 
             unset($toPush->user_id, $toPush->location_id, $toPush->type_id);
 

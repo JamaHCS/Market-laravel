@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\SellController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\api\MarketController;
 use App\Http\Controllers\Api\SearchController;
@@ -34,4 +35,6 @@ Route::prefix('v1')->group(function () {
     Route::middleware('auth:api')->get('user', [AuthController::class, 'user'])->name('api.v1.user');
 
     Route::get('products', [ProductController::class, 'products'])->name('api.v1.products');
+
+    Route::post('sell', [SellController::class, 'sell'])->name('api.v1.sell');
 });
