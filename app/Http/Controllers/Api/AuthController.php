@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Login;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\ApiUserResource;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -38,11 +39,14 @@ class AuthController extends Controller
 
         $token->save();
 
+        $toFormat = User::find($user->id);
+
         return response()->json([
             'access_token' => $tokenResult->accessToken,
             'token_type' => 'Bearer',
             'expires_at' => Carbon::parse($token->expires_at)->toDateTimeString(),
-            'user' => $user
+            'user' => new ApiUserResource($toFormat)
+            // 'user' => $user->id
         ]);
     }
 
@@ -70,13 +74,13 @@ class AuthController extends Controller
 
         $user = User::create($input);
 
-        return response()->json($user, 201);
+        return response()->json(new ApiUserResource($user), 201);
     }
 
     public function user()
     {
         $user = Auth()->user();
-        return response()->json($user, 200);
+        return response()->json(new ApiUserResource($user), 200);
     }
 
     protected function validator(array $data)
