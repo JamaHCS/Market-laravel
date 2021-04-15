@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\api\MarketController;
 use App\Http\Controllers\Api\SearchController;
@@ -25,4 +26,9 @@ Route::prefix('v1')->group(function () {
 
     Route::post('product', [SearchController::class, 'search'])->name('search');
     Route::get('products/{market}', [SearchController::class, 'products'])->name('products');
+
+    route::post('login', [AuthController::class, 'login'])->name('api.v1.login');
+    route::post('register', [AuthController::class, 'register'])->name('api.v1.register');
+    route::middleware('auth:api')->post('logout', [AuthController::class, 'logout'])->name('api.v1.logout');
+    route::middleware('auth:api')->get('user', [AuthController::class, 'user'])->name('api.v1.user');
 });

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\Market;
 use App\Models\MarketUser;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Jetstream\HasProfilePhoto;
