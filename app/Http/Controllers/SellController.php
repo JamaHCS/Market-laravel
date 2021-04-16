@@ -53,6 +53,7 @@ class SellController extends Controller
         $state = $request->state;
         $raw = json_decode($state);
         $relation =MarketUser::find($request->relation_id);
+        $market = Market::find($relation->market_id);
 
         // dd($relation);
 
@@ -74,7 +75,7 @@ class SellController extends Controller
             ]);
         }
 
-        $sells = Sell::where('market_id', '=', $market->id)->orderBy('id', 'asc')->paginate(7);
+        $sells = Sell::where('market_id', '=', $market->id)->orderBy('id', 'desc')->paginate(7);
 
 
         // $sells = $relation->market()->get()->sells()->get();

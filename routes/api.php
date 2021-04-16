@@ -14,27 +14,29 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('v1')->group(function () {
-    Route::prefix('statistics')->group(function () {
-        Route::get('market/{market}', [StatisticController::class, 'market'])->name('gettingMarket');
-        Route::get('sold-products/{market}', [StatisticController::class, 'soldProducts'])->name('soldProducts');
+Route::middleware(['consults'])->group(function () {
+    Route::prefix('v1')->group(function () {
+        Route::prefix('statistics')->group(function () {
+            Route::get('market/{market}', [StatisticController::class, 'market'])->name('gettingMarket');
+            Route::get('sold-products/{market}', [StatisticController::class, 'soldProducts'])->name('soldProducts');
+        });
+
+        Route::prefix('markets')->group(function () {
+            Route::post('basic-config', [MarketController::class, 'updateBasic']);
+            Route::post('location-config', [MarketController::class, 'updateLocation']);
+            Route::get('barcode/{barcode}', [MarketController::class, 'gettingProduct']);
+        });
+
+        Route::post('product', [SearchController::class, 'search'])->name('search');
+        Route::get('products/{market}', [SearchController::class, 'products'])->name('products');
+
+        Route::post('login', [AuthController::class, 'login'])->name('api.v1.login');
+        Route::post('register', [AuthController::class, 'register'])->name('api.v1.register');
+        Route::middleware('auth:api')->post('logout', [AuthController::class, 'logout'])->name('api.v1.logout');
+        Route::middleware('auth:api')->get('user', [AuthController::class, 'user'])->name('api.v1.user');
+
+        Route::get('products', [ProductController::class, 'products'])->name('api.v1.products');
+
+        Route::post('sell', [SellController::class, 'sell'])->name('api.v1.sell');
     });
-
-    Route::prefix('markets')->group(function () {
-        Route::post('basic-config', [MarketController::class, 'updateBasic']);
-        Route::post('location-config', [MarketController::class, 'updateLocation']);
-        Route::get('barcode/{barcode}', [MarketController::class, 'gettingProduct']);
-    });
-
-    Route::post('product', [SearchController::class, 'search'])->name('search');
-    Route::get('products/{market}', [SearchController::class, 'products'])->name('products');
-
-    Route::post('login', [AuthController::class, 'login'])->name('api.v1.login');
-    Route::post('register', [AuthController::class, 'register'])->name('api.v1.register');
-    Route::middleware('auth:api')->post('logout', [AuthController::class, 'logout'])->name('api.v1.logout');
-    Route::middleware('auth:api')->get('user', [AuthController::class, 'user'])->name('api.v1.user');
-
-    Route::get('products', [ProductController::class, 'products'])->name('api.v1.products');
-
-    Route::post('sell', [SellController::class, 'sell'])->name('api.v1.sell');
 });
