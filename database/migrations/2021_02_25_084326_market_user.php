@@ -16,11 +16,12 @@ class MarketUser extends Migration
         Schema::create('market_users', function (Blueprint $table) {
             $table->id();
 
-            $table->string('uuid')->unique();
+            $table->string('uuid');
 
             $table->bigInteger('market_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('role_id')->unsigned();
+            $table->boolean('is_active')->default(true);
 
             $table->foreign('market_id')->references('id')->on('markets');
             $table->foreign('role_id')->references('id')->on('role_on_markets');

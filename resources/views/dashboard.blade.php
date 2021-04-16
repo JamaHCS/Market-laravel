@@ -9,7 +9,7 @@
         </div>
         <div class="col-9">
           <div class="flex-container">
-            <a href="{{ route('market.create') }}" class="btn-new" data-toggle="tooltip" data-placement="top" title="Crear nuevo market">
+            <a href="{{ route('market.create') }}" class="btn-new" data-toggle="tooltip" data-placement="top" title="Crear o agregar market">
               <x-jet-secondary-button class="mt-2 mr-2" type="button">
                 <i class="fas fa-plus"></i> Nuevo
               </x-jet-secondary-button>
@@ -21,6 +21,7 @@
   </x-slot>
 
   @foreach($relations as $relation)
+
   <div class="py-12 dashboard-element">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div class="bg-white shadow-xl sm:rounded-lg py-3">
@@ -40,6 +41,7 @@
               </div>
             </div>
             <div class="col-md-3">
+              @if($relation->is_active)
               <x-jet-dropdown align="right" width="48">
                 <x-slot name="trigger">
                   <span class="inline-flex rounded-md">
@@ -58,6 +60,7 @@
                     {{ __('Acciones') }}
                   </div>
 
+                  @if ($relation->role_id != 3)
                   <!-- Configuration -->
                   <form action="{{ route('market.config') }}" method="post">
                     <input type="hidden" name="relation_id" value="{{ $relation->id }}">
@@ -68,6 +71,7 @@
                     </button>
                   </form>
                   <div class="border-t border-gray-100"></div>
+                  @endif
 
                   <!-- Products Management -->
                   <form action="{{ route('market.products.show') }}" method="post">
@@ -82,7 +86,7 @@
 
                   <div class="border-t border-gray-100"></div>
 
-
+                  @if ($relation->role_id != 3)
                   <!-- Statistics -->
                   <form action="{{ route('statistics') }}" method="post">
                     <input type="hidden" name="market_id" value="{{ $relation->market_id }}">
@@ -93,6 +97,7 @@
                   </form>
 
                   <div class="border-t border-gray-100"></div>
+                  @endif
 
                   <!-- Sells -->
                   <a href="{{ route('sells.index', $relation->id) }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out w-full">
@@ -100,14 +105,27 @@
                   </a>
                   <div class="border-t border-gray-100"></div>
 
+                  @if ($relation->role_id != 3)
+                  <form action="{{ route('employees.index') }}" method="post">
+                    <input type="hidden" name="relation_id" value="{{ $relation->id }}">
+                    @csrf
+                    <button type="submit" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out w-full">
+                      {{ __('Empleados') }}
+                    </button>
+                  </form>
+
+                  <div class="border-t border-gray-100"></div>
+                  @endif
 
                 </x-slot>
               </x-jet-dropdown>
+              @endif
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
   @endforeach
 </x-app-layout>

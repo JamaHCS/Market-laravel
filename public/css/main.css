@@ -1,3 +1,22 @@
+.dashboard-element a:hover {
+  text-decoration: none;
+  color: unset;
+}
+
+.dashboard-element a {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.center-pls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 .container-image-product {
   overflow: hidden;
   max-height: 4rem;
@@ -7,14 +26,22 @@
   align-items: center;
 }
 
-
-.btn-sell{
+.btn-sell {
   margin-right: 6rem;
   margin-bottom: 6rem;
 
   position: absolute;
   right: 0;
   bottom: 0;
+}
+
+.smaller {
+  font-size: 0.8em;
+}
+
+.employees .row {
+  display: flex;
+  justify-content: center;
 }
 
 main {
@@ -88,6 +115,14 @@ main {
   margin-left: auto;
   margin-right: auto;
   border-bottom: 1px solid rgb(124, 124, 124);
+}
+
+.separated-em {
+  width: 95%;
+  height: 1px;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 1px solid rgb(192, 192, 192);
 }
 
 .imgDefault {

@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-3">
           <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Crear nuevo market') }}
+            {{ __('Market') }}
           </h2>
           <x-jet-secondary-button type="button" class="btn-new mt-2 mr-2" onclick="history.back()">
             <i class="fas fa-angle-double-left"></i> Regresar
@@ -88,5 +88,38 @@
     </div>
   </div>
 
+  <div>
+    <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+      <div class="md:grid md:grid-cols-3 md:gap-6">
+        <x-jet-section-title>
+          <x-slot name="title">Unirse a un market ya existente</x-slot>
+          <x-slot name="description">Si vas a trabajar con alguien más en un market ya existente, por favor, inserta acontiguanción el codigo de Market que te proporcionaron.</x-slot>
+        </x-jet-section-title>
+
+        <div class="md:mt-0 md:col-span-2">
+          <form action="{{ route('employees.store') }}" method="POST">
+            <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
+              <div class="container-fluid">
+                <div class="row">
+                  <!-- code -->
+                  <div class="col-8">
+                    <x-jet-label for="code" value="{{ __('Código de Market') }}" />
+                    <x-jet-input id="code" type="text" name="code" class="mt-1 block w-full" />
+                    <x-jet-input-error for="code" class="mt-2" />
+                  </div>
+                  <div class="col-4">
+                    @csrf
+                    <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150 mt-4">
+                      {{ __('acceder') }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </x-app-layout>

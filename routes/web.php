@@ -7,6 +7,7 @@ use App\Http\Controllers\MarketController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EmployeesController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -47,5 +48,10 @@ Route::prefix('markets')->group(function () {
             Route::post('/update', [ProductController::class, 'update'])->name('market.products.update');
             Route::post('/destroy', [ProductController::class, 'destroyed'])->name('market.products.destroy');
         });
+
+        Route::post('employees', [EmployeesController::class, 'index'])->name('employees.index');
+        Route::post('employees/store', [EmployeesController::class, 'store'])->name('employees.store');
+        Route::post('employees/confirm', [EmployeesController::class, 'confirm'])->name('employees.confirm');
+        Route::post('employees/fire', [EmployeesController::class, 'fire'])->name('employees.fire');
     });
 });
