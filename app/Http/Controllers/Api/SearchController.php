@@ -10,6 +10,11 @@ use App\Http\Controllers\Controller;
 
 class SearchController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('consults');
+    }
+
     public function products(Market $market)
     {
         $products = $market->products()->get();

@@ -10,6 +10,11 @@ use App\Http\Resources\ApiProductsResource;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('consults');
+    }
+
     public function products(Request $request)
     {
         if (isset($request->market)) {

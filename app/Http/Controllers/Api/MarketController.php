@@ -11,6 +11,11 @@ use App\Http\Controllers\Controller;
 
 class MarketController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('consults');
+    }
+
     public function updateBasic(Request $request)
     {
         $market = null;

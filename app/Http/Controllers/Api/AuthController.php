@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('consults');
+    }
+
     public function login(Request $request)
     {
         $request->validate([

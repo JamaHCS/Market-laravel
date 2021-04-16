@@ -12,6 +12,11 @@ use App\Http\Resources\ApiSellResource;
 
 class SellController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('consults');
+    }
+
     public function sell(Request $request)
     {
         $relation = MarketUser::find($request->relation_id);

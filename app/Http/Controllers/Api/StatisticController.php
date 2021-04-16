@@ -9,10 +9,10 @@ use App\Http\Controllers\Controller;
 
 class StatisticController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('consults');
-    // }
+    public function __construct()
+    {
+        $this->middleware('consults');
+    }
 
     public function market(Market $market)
     {

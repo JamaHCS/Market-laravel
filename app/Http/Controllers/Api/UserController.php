@@ -9,6 +9,11 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('consults');
+    }
+
     public function show(Request $request)
     {
         $user = $request->user();
