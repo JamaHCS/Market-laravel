@@ -76,6 +76,7 @@ class AuthController extends Controller
 
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
+        $input['password_verified'] = true;
 
         $user = User::create($input);
 
