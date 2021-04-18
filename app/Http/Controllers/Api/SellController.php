@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Sell;
+use App\Models\Market;
 use App\Models\Product;
 use App\Models\MarketUser;
 use App\Models\SellDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ApiSellResource;
+use App\Http\Resources\ApiFullSellResource;
 
 class SellController extends Controller
 {
@@ -41,5 +43,17 @@ class SellController extends Controller
         }
 
         return response()->json(new ApiSellResource($sell), 200);
+    }
+
+    public function index(Market $market)
+    {
+        $sellsQuery = $market->sells()->get();
+        $sells = [];
+
+        foreach ($sellsQuery as $sell) {
+            array_push($sells, new ApiFullSellResource($sell));
+        }
+
+        return response()->json($sells, 200);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Sell;
 use App\Models\Product;
 use App\Models\SellDetail;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -26,6 +27,11 @@ class SellDetailFactory extends Factory
         $quant = $this->faker->numberBetween(1, 5);
         $product = Product::find($this->faker->numberBetween(1, 5));
         $total = $product->price * $quant;
+        $sell = Sell::find($sell_id);
+        $extotal = $sell->total;
+        $newTotal = ($extotal != null) ? $total + $extotal : 0;
+        $sell->total = $newTotal;
+        // $sell->save();
 
         return [
             'quant' => $quant,

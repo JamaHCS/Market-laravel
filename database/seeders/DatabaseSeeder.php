@@ -143,7 +143,7 @@ class DatabaseSeeder extends Seeder
             'product_id' => $kinder->id
         ]);
 
-        Sell::factory()->count(50)->create();
+        $sells = Sell::factory()->count(50)->create();
 
         SellDetail::factory()->count(200)->create();
     }

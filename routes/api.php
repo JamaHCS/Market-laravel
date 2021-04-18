@@ -38,5 +38,6 @@ Route::middleware(['consults'])->group(function () {
         Route::get('products', [ProductController::class, 'products'])->name('api.v1.products');
 
         Route::post('sell', [SellController::class, 'sell'])->name('api.v1.sell');
+        Route::get('sell/index/{market}', [SellController::class, 'index'])->name('api.v1.sell.index');
     });
 });
