@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\api\MarketController;
 use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\EmployeesController;
 use App\Http\Controllers\Api\StatisticController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -22,6 +23,7 @@ Route::middleware(['consults'])->group(function () {
         });
 
         Route::prefix('markets')->group(function () {
+            Route::get('/{email}', [MarketController::class, 'index']);
             Route::post('basic-config', [MarketController::class, 'updateBasic']);
             Route::post('location-config', [MarketController::class, 'updateLocation']);
             Route::get('barcode/{barcode}', [MarketController::class, 'gettingProduct']);
@@ -39,5 +41,7 @@ Route::middleware(['consults'])->group(function () {
 
         Route::post('sell', [SellController::class, 'sell'])->name('api.v1.sell');
         Route::get('sell/index/{market}', [SellController::class, 'index'])->name('api.v1.sell.index');
+
+        Route::get('employees/store/{uuid}', [EmployeesController::class, 'adding'])->name('api.v1.employee.store');
     });
 });

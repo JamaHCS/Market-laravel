@@ -16,6 +16,29 @@ class MarketController extends Controller
         $this->middleware('consults');
     }
 
+    public function index($email)
+    {
+        $user = User::where('email', '=', $email)->get()[0];
+        $relations = $user->marketRelation()->get();
+
+        $markets = [];
+
+        foreach ($relations as $relation) {
+            $toPush = $relation->market()->get()[0];
+            $toPush->role = $relation->role()->get()[0]->role;
+            $toPush->logo = url('/')."/".$toPush->logo;
+            $toPush->type = $toPush->type()->get()[0]->name;
+            $toPush->relation_id = $relation->id;
+
+            unset($toPush->user_id, $toPush->location_id, $toPush->type_id);
+
+            array_push($markets, $toPush);
+        }
+
+
+        return response()->json($markets, 200);
+    }
+
     public function updateBasic(Request $request)
     {
         $market = null;
