@@ -70,7 +70,8 @@ class DatabaseSeeder extends Seeder
             'brand' => 'Frito-Lay',
             'price' => 13,
             'cost' => 10,
-            'market_id' => 1
+            'market_id' => 1,
+            'stock' => 100
         ]);
 
         ProductImage::create([
@@ -86,7 +87,8 @@ class DatabaseSeeder extends Seeder
             'brand' => 'Frito-Lay',
             'price' => 15,
             'cost' => 13,
-            'market_id' => 1
+            'market_id' => 1,
+            'stock' => 100
         ]);
 
         ProductImage::create([
@@ -102,7 +104,8 @@ class DatabaseSeeder extends Seeder
             'type' => 'Refrescos',
             'price' => 16,
             'cost' => 14,
-            'market_id' => 1
+            'market_id' => 1,
+            'stock' => 100
             ]);
 
         ProductImage::create([
@@ -118,7 +121,8 @@ class DatabaseSeeder extends Seeder
             'type' => 'Refrescos',
             'price' => 30,
             'cost' => 28,
-            'market_id' => 1
+            'market_id' => 1,
+            'stock' => 100
         ]);
 
         ProductImage::create([
@@ -134,7 +138,8 @@ class DatabaseSeeder extends Seeder
             'type' => 'Golosinas',
             'price' => 12,
             'cost' => 9,
-            'market_id' => 1
+            'market_id' => 1,
+            'stock' => 100
         ]);
 
         ProductImage::create([

@@ -49,7 +49,8 @@ class ProductController extends Controller
             'type' => $request->type,
             'price' => $request->price,
             'cost' => $request->cost,
-            'market_id' => $relation->market_id
+            'market_id' => $relation->market_id,
+            'stock' => $request->stock
         ]);
 
         $file = $request->productImage;
@@ -95,7 +96,8 @@ class ProductController extends Controller
             'type' => $request->type,
             'price' => $request->price,
             'cost' => $request->cost,
-            'market_id' => $relation->market_id
+            'market_id' => $relation->market_id,
+            'stock' => $request->stock
         ]);
 
         if ($request->productImage != null) {
@@ -172,7 +174,8 @@ class ProductController extends Controller
             'type' => $request->type,
             'price' => $request->price,
             'cost' => $request->cost,
-            'market_id' => $relation->market_id
+            'market_id' => $relation->market_id,
+            'stock' => $request->stock
         ]);
 
         if (isset($request->productImage)) {

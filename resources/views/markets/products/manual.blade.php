@@ -93,6 +93,14 @@
                   </div>
                 </div>
 
+                <div class="form-row">
+                  <div class="form-group col-sm-6">
+                    <x-jet-label for="stock" value="{{ __('Stock') }}" />
+                    <x-jet-input id="stock" type="number" name="stock" min="0" step="0.01" class="mt-1 block w-full" data-toggle="tooltip" data-placement="top" title="¿Cuántos tienes en tu inventario?" required />
+                    <x-jet-input-error for="stock" class="mt-2" />
+                  </div>
+                </div>
+
                 <input type="hidden" name="relation_id" value="{{ $relation->id }}">
 
                 @csrf
