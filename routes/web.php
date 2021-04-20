@@ -13,6 +13,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('social/{uri}', [DashboardController::class, 'social']);
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 Route::middleware(['auth:sanctum', 'verified'])->post('statistics/', [ProductController::class, 'soldProducts'])->name('statistics');
 
