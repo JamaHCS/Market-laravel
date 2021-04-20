@@ -67,6 +67,10 @@ class SellController extends Controller
             $product = Product::find($val->id);
             $total = $val->quant * $product->price;
 
+            $exQuant = $product->stock - $val->quant;
+            $product->stock = $exQuant;
+            $product->save();
+
             $detail = SellDetail::create([
                 "quant" => $val->quant,
                 "total" => $total,

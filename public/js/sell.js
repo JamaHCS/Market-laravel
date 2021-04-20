@@ -24,15 +24,19 @@ const getProduct = async () => {
 
     console.log("req: ", json);
 
+    tbody.innerHTML = "";
 
-    tbody.innerHTML = '';
+    json.forEach((el) => {
+      tbody.innerHTML += getTemplate(
+        el.id,
+        el.image,
+        el.name,
+        el.price,
+        el.stock
+      );
+    });
 
-      json.forEach((el) => {
-        tbody.innerHTML += getTemplate(el.id, el.image, el.name, el.price);
-      });
-
-      $("#modalSells").modal();
-
+    $("#modalSells").modal();
   } catch (err) {
     console.log("error: ", err);
     throw Error(err);
@@ -40,13 +44,14 @@ const getProduct = async () => {
 };
 
 const setState = (id) => {
-  let quant = prompt('Inserte la cantidad, por favor');
-  state.push({id: id, quant: quant});
-  elementsDidUpdate()
+  let quant = prompt("Inserte la cantidad, por favor");
+  state.push({ id: id, quant: quant });
+  elementsDidUpdate();
 };
 
-const getTemplate = (id, img, name, price) => {
-  return `
+const getTemplate = (id, img, name, price, stock) => {
+  if (stock > 0) {
+    return `
               <tr>
                 <td>${id}</td>
                 <td>
@@ -61,32 +66,50 @@ const getTemplate = (id, img, name, price) => {
                 </td>
               </tr>
   `;
+  } else {
+    return `
+              <tr>
+                <td>${id}</td>
+                <td>
+                  <div class="container-image-product">
+                    <img src="${img}" class="img-product">
+                  </div>
+                </td>
+                <td>${name}</td>
+                <td>$ ${price}</td>
+                <td>
+                  <button type="button" class="btn btn-success" data-dismiss="modal" disabled>Agregar</button>
+                </td>
+              </tr>
+  `;
+  }
 };
 
-const elementsDidUpdate = () =>{
-
-
+const elementsDidUpdate = () => {
   formtBody.innerHTML = "";
   total = 0;
 
-  state.forEach(el => {
-
-
-    let producta = PRODUCTS.filter(val => val.id == el.id);
+  state.forEach((el) => {
+    let producta = PRODUCTS.filter((val) => val.id == el.id);
     console.log("state: ", producta);
 
-    formtBody.innerHTML += getTemplateElements(producta[0].id, producta[0].image, producta[0].name, producta[0].price, el.quant );
+    formtBody.innerHTML += getTemplateElements(
+      producta[0].id,
+      producta[0].image,
+      producta[0].name,
+      producta[0].price,
+      el.quant
+    );
 
     formState.value = JSON.stringify(state);
-
   });
-}
+};
 
 const getTemplateElements = (id, img, name, price, quant) => {
   let subtotal = quant * price;
 
   total += subtotal;
-  totalt.innerText ="$"+ total;
+  totalt.innerText = "$" + total;
 
   return `
     <tr>

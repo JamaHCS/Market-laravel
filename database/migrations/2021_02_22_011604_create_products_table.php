@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->boolean('is_active')->default(true);
             $table->string('name');
+            $table->float('stock');
             $table->string('barcode')->nullable();
             $table->string('brand');
             $table->float('cost');

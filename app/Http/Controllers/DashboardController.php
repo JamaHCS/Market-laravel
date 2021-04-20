@@ -36,4 +36,9 @@ class DashboardController extends Controller
             return redirect()->route('dashboard');
         }
     }
+
+    public function social($uri)
+    {
+        return view('social', compact('uri'));
+    }
 }
