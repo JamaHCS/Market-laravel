@@ -2,7 +2,8 @@
 
   <input type="hidden" id="market_id" value="{{ $relation->market_id }}">
   <script>
-    const PRODUCTS = <?php echo json_encode($products); ?>;
+    const PRODUCTS = < ? php echo json_encode($products); ? > ;
+
   </script>
 
 
@@ -51,34 +52,34 @@
         <div class="row mt-2">
 
 
-      <table class="table table-light">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">&nbsp;</th>
-            <th scope="col">Producto</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Subtotal</th>
-            </tr>
+          <table class="table table-light">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">&nbsp;</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Subtotal</th>
+              </tr>
             </thead>
             <tbody id="formtBody">
-              </tbody>
-              <tr>
-                <td>Total:</td>
-                <td id="total"></td>
-              </tr>
-              </table>
+            </tbody>
+            <tr>
+              <td>Total:</td>
+              <td id="total"></td>
+            </tr>
+          </table>
 
-      <form action="{{ route('sells.store') }}" method="post">
-        <input type="hidden" name="state" id="formState" value="">
-        <input type="hidden" name="relation_id"  value="{{ $relation->id }}">
-        @csrf
+          <form action="{{ route('sells.store') }}" method="post">
+            <input type="hidden" name="state" id="formState" value="">
+            <input type="hidden" name="relation_id" value="{{ $relation->id }}">
+            @csrf
 
-        <button type="submit" class="btn btn-success btn-sell">Vender</button>
-      </form>
+            <button type="submit" class="btn btn-success btn-sell">Vender</button>
+          </form>
 
-      </div>
+        </div>
       </div>
 
     </div>
@@ -88,7 +89,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Modal title</h5>
+          <h5 class="modal-title">Vender</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

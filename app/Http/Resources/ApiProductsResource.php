@@ -22,7 +22,8 @@ class ApiProductsResource extends JsonResource
             'type' => $this->type,
             'price' => $this->price,
             'cost' => $this->cost,
-            'image' => $this->image()->get()[0]->url
+            'image' => $this->image()->get()[0]->url,
+            'stock' => $this->stock
         ];
     }
 }

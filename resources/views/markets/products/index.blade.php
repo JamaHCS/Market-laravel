@@ -42,6 +42,7 @@
             <h5 class="card-title">{{ $product->name }}</h5>
             <p class="card-text mb-0"><span class="mr-2 font-weight-bold">Precio:</span>${{ $product->price }}</p>
             <p class="card-text"><span class="mr-2 font-weight-bold">Costo:</span>${{ $product->cost }}</p>
+            <p class="card-text"><span class="mr-2 font-weight-bold">En inventario:</span>{{ $product->stock }}</p>
 
             <form action="{{ route('market.products.edit') }}" method="post">
               <input type="hidden" name="product_id" value="{{ $product->id }}">
