@@ -50,8 +50,6 @@
     <div class="sell-elements">
       <div class="container">
         <div class="row mt-2">
-
-
           <table class="table table-light">
             <thead>
               <tr>
