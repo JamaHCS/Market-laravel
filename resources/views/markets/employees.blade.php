@@ -37,7 +37,8 @@
               <div class="row">
                 <div class="col-5">
                   <div class="card" class="employees-card">
-                    <img src="{{ $chief->profile_photo_url }}" class="card-img-top" alt="...">
+                    <img src="{{ $chief->img }}" class="card-img-top" alt="...">
+
                     <div class="card-body">
                       <h5 class="card-title text-center">Administrador</h5>
                       <p class="card-text text-muted text-center">
@@ -60,7 +61,8 @@
                 @if ($employee->id != $currentRelation->id && $employee->is_active)
                 <div class="col-5">
                   <div class="card" class="employees-card">
-                    <img src="{{ $employee->user()->get()[0]->profile_photo_url }}" class="card-img-top" alt="...">
+                    <img src="{{ $employee->user()->get()[0]->img }}" class="card-img-top" alt="...">
+
                     <div class="card-body">
                       <h5 class="card-title text-center">{{ $employee->role()->get()[0]->role }}</h5>
                       <p class="card-text text-muted text-center">

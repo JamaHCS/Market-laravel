@@ -32,7 +32,7 @@ class ApiUserResource extends JsonResource
 
         return [
             'name' => $this->name,
-            'profile_photo_url' => $this->profile_photo_url,
+            'profile_photo_url' => $this->img,
             'email' => $this->email,
             'markets' => $markets
         ];

@@ -94,4 +94,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(MarketUser::class, 'user_id', 'id');
     }
+
+    // <?php (Auth::user()->profile_photo_path != null) ? Auth::user()->profile_photo_path : Auth::user()->profile_photo_url;
+
+
+    public function getImgAttribute()
+    {
+        if ($this->profile_photo_path != null) {
+            return $this->profile_photo_path;
+        } else {
+            return $this->profile_photo_url;
+        }
+    }
 }

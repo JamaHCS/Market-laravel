@@ -33,6 +33,10 @@ class SellController extends Controller
 
         foreach ($request->sells as $det) {
             $product = Product::find($det['product_id']);
+            // return response()->json($det);
+            $exQuant = $product->stock - $det['quant'];
+            $product->stock = $exQuant;
+            $product->save();
 
             $detail = SellDetail::create([
                 'quant' => $det['quant'],

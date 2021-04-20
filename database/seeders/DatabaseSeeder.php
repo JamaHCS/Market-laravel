@@ -122,7 +122,7 @@ class DatabaseSeeder extends Seeder
             'price' => 30,
             'cost' => 28,
             'market_id' => 1,
-            'stock' => 100
+            'stock' => 0
         ]);
 
         ProductImage::create([
@@ -157,7 +157,8 @@ class DatabaseSeeder extends Seeder
             'type' => 'Bebidas no alcohólicas',
             'price' => 10,
             'cost' => 11,
-            'market_id' => 1
+            'market_id' => 1,
+            'stock' => 100
         ]);
 
         ProductImage::create([
@@ -174,7 +175,8 @@ class DatabaseSeeder extends Seeder
             'type' => 'Jugos',
             'price' => 10,
             'cost' => 11,
-            'market_id' => 1
+            'market_id' => 1,
+            'stock' => 100
         ]);
 
         ProductImage::create([
