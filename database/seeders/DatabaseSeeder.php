@@ -143,6 +143,41 @@ class DatabaseSeeder extends Seeder
             'product_id' => $kinder->id
         ]);
 
+
+        $ciel = Product::create([
+            'is_active' => true,
+            'name' => 'Ciel 1L',
+            'barcode' => '7501055310883',
+            'brand' => 'Ciel',
+            'type' => 'Bebidas no alcohólicas',
+            'price' => 10,
+            'cost' => 11,
+            'market_id' => 1
+        ]);
+
+        ProductImage::create([
+            'is_url' => true,
+            'image' => 'https://static.openfoodfacts.org/images/products/750/105/531/0883/front_es.15.full.jpg',
+            'product_id' => $ciel->id
+        ]);
+
+        $valle = Product::create([
+            'is_active' => true,
+            'name' => 'del valle',
+            'barcode' => '7501055330461',
+            'brand' => 'del valle',
+            'type' => 'Jugos',
+            'price' => 10,
+            'cost' => 11,
+            'market_id' => 1
+        ]);
+
+        ProductImage::create([
+            'is_url' => true,
+            'image' => 'https://static.openfoodfacts.org/images/products/750/105/533/0461/front_es.3.full.jpg',
+            'product_id' => $valle->id
+        ]);
+
         $sells = Sell::factory()->count(50)->create();
 
         SellDetail::factory()->count(200)->create();
