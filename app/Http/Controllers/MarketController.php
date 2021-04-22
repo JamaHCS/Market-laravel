@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Market;
 use App\Models\MarketType;
 use App\Models\MarketUser;
@@ -140,5 +141,19 @@ class MarketController extends Controller
             $location = $location[0];
             return view('markets.config', compact('relation', 'types', 'location'));
         }
+    }
+
+    public function main(Request $request)
+    {
+        $relation = MarketUser::find($request->relation_id);
+        $market = Market::find($relation->market_id);
+        $user = User::find($relation->user_id);
+
+        MarketUser::where('user_id', '=', $user->id)->update(['is_main' => false]);
+
+        $relation->is_main = true;
+        $relation->save();
+
+        return redirect()->route('dashboard');
     }
 }

@@ -59,7 +59,8 @@ class DatabaseSeeder extends Seeder
                 'uuid' => $market->uuid,
                 'market_id' => $market->id,
                 'user_id' => $user->id,
-                'role_id' => 1
+                'role_id' => 1,
+                'is_main' => true
             ]
         );
 

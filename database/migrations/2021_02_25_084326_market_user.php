@@ -22,6 +22,7 @@ class MarketUser extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('role_id')->unsigned();
             $table->boolean('is_active')->default(true);
+            $table->boolean('is_main')->default(false);
 
             $table->foreign('market_id')->references('id')->on('markets');
             $table->foreign('role_id')->references('id')->on('role_on_markets');

@@ -15,7 +15,8 @@ class MarketUser extends Model
         'uuid',
         'market_id',
         'user_id',
-        'role_id'
+        'role_id',
+        'is_main'
     ];
 
     protected $table = 'market_users';

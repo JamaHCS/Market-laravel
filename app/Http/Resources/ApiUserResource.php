@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Models\User;
+use App\Models\MarketUser;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ApiUserResource extends JsonResource
@@ -15,7 +16,7 @@ class ApiUserResource extends JsonResource
      */
     public function toArray($request)
     {
-        $relations = $this->marketRelation()->get();
+        $relations = MarketUser::where('user_id', '=', $this->id)->where('is_main', '=', true)->get();
         $markets = [];
 
         foreach ($relations as $relation) {

@@ -1,3 +1,9 @@
+.buttons-dashboard {
+  display: flex;
+
+  flex-direction: column;
+}
+
 .dashboard-element a:hover {
   text-decoration: none;
   color: unset;
@@ -7,6 +13,10 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.bg-secondary {
+  background-color: #d3d3d3 !important;
 }
 
 .center-pls {

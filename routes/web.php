@@ -39,6 +39,8 @@ Route::prefix('markets')->group(function () {
         Route::post('store', [MarketController::class, 'store'])->name('market.store');
         Route::post('config', [MarketController::class, 'config'])->name('market.config');
 
+        Route::post('main', [MarketController::class, 'main'])->name('market.main');
+
         Route::prefix('products')->group(function () {
             Route::post('/', [ProductController::class, 'index'])->name('market.products.show');
             Route::post('how', [ProductController::class, 'howToAdd'])->name('market.products.how');
