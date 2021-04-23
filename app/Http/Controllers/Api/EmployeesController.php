@@ -14,13 +14,16 @@ class EmployeesController extends Controller
     {
         $market = Market::where('uuid', '=', $uuid)->get()[0];
 
-        $user = User::where('email', '=', $request->uid)->get()[0];
+        $user = User::where('email', '=', $request->user)->get()[0];
+
+        MarketUser::where('user_id', '=', $user->id)->update(['is_main' => false]);
 
         $relation = MarketUser::create([
             'uuid' => $market->uuid,
         'market_id' => $market->id,
         'user_id' => $user->id,
-        'role_id' => 3
+        'role_id' => 3,
+        'is_main' => true
         ]);
 
 

@@ -27,7 +27,7 @@
       @if ($relation->is_main)
       <div class="bg-white shadow-xl sm:rounded-lg py-3">
         @else
-        <div class="bg-white bg-secondary shadow-xl sm:rounded-lg py-3">
+        <div class="bg-white bg-secondary-dashboard shadow-xl sm:rounded-lg py-3">
           @endif
           <div class="container">
             <div class="row">

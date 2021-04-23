@@ -33,18 +33,11 @@
       </div>
 
       <div class="flex items-center justify-end mt-4">
-        @if (Route::has('password.request'))
-        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-          {{ __('¿Olvidaste tu contraseña?') }}
-        </a>
-        @endif
-
         <x-jet-button class="ml-4">
           {{ __('Iniciar sesión') }}
         </x-jet-button>
       </div>
 
-      {{-- Login with Facebook --}}
       <div class="flex items-center justify-end mt-4">
         <a class="btn btn-facebook" href="{{ url('auth/facebook') }}">
           <i class="fab fa-facebook-f"></i>
