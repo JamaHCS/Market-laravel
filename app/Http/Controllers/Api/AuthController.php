@@ -26,6 +26,7 @@ class AuthController extends Controller
             // 'remember_me' => 'boolean'
         ]);
 
+
         $credentials = request(['email', 'password']);
 
         if (!Auth::attempt($credentials)) {
@@ -38,13 +39,17 @@ class AuthController extends Controller
         $tokenResult = $user->createToken('Personal Access Token');
 
         $token = $tokenResult->token;
+        
         if ($request->remember_me) {
             $token->expires_at = Carbon::now()->addWeeks(1);
         }
 
+
+
         $token->save();
 
         $toFormat = User::find($user->id);
+
 
         return response()->json([
             'access_token' => $tokenResult->accessToken,

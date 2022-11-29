@@ -18,6 +18,8 @@ let product = {
 };
 
 const submitAction = async () => {
+
+  
   loader.classList.add("d-flex");
 
   let barcode = barcodeInput.value;
@@ -31,7 +33,7 @@ const submitAction = async () => {
 
     product.name = titles[1].innerText;
     product.barcode = barcode;
-    product.image = metaImage[0].content;
+    product.image ='https://fr-es.openfoodfacts.org/' + metaImage[0].content;
     product.type = metaCategory[0].content;
     product.brand = metaBrand[0].content;
 

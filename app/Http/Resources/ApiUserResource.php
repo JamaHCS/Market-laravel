@@ -23,18 +23,18 @@ class ApiUserResource extends JsonResource
         foreach ($relations as $relation) {
             $location = new stdClass();
 
-            if ($relation->market()->get()[0]->location()->get()[0]->latitude) {
-                $location->latitude = $relation->market()->get()[0]->location()->get()[0]->latitude;
-                $location->longitude = $relation->market()->get()[0]->location()->get()[0]->longitude;
+            if ($relation->market()->get()[0]?->location()->get()[0]?->latitude) {
+                $location->latitude = $relation->market()->get()[0]?->location()->get()[0]?->latitude;
+                $location->longitude = $relation->market()->get()[0]?->location()->get()[0]?->longitude;
                 $location->active = true;
             } else {
                 $location->active = false;
             }
 
             $toPush = $relation->market()->get()[0];
-            $toPush->role = $relation->role()->get()[0]->role;
+            $toPush->role = $relation->role()->get()[0]?->role;
             $toPush->logo = url('/')."/".$toPush->logo;
-            $toPush->type = $toPush->type()->get()[0]->name;
+            $toPush->type = $toPush->type()->get()[0]?->name;
             $toPush->relation_id = $relation->id;
             $toPush->location = $location;
 

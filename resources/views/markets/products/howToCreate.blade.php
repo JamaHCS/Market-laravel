@@ -49,7 +49,7 @@
                       @csrf
 
                       <label for="automatic">Automático <span class="text-muted text-xs">(Experimental)</span></label>
-                      <button type="submit" id="automatic" class="btn btn-light btn-ico">
+                      <button type="submit" id="automatic" class="btn btn-light btn-ico" >
                         <i class="fas fa-barcode"></i>
                       </button>
                     </div>
@@ -62,6 +62,5 @@
       </div>
     </div>
   </div>
-
 
 </x-app-layout>
