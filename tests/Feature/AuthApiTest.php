@@ -8,16 +8,38 @@ use Tests\TestCase;
 use App\Models\User;
 
 
+/**
+ * AuthApiTest
+ * 
+ * Clase encargada de generar los test automáticos del flujo de Autenticación.
+ */
 class AuthApiTest extends TestCase
 {
+    
     use RefreshDatabase;
     
+        
+    /**
+     * test_Requires_Email_And_Login
+     *
+     * Testea que el servicio de login esté arriba.
+     * 
+     * @return void
+     */
     public function test_Requires_Email_And_Login()
     {
         $this->json('POST', 'api/v1/login')
             ->assertStatus(422);
     }
-
+    
+    /**
+     * test_User_Logins_Successfully
+     *
+     * Prueba unitaria encargada de probar el flujo de inicio de sesión y generación del token de autorización, 
+     * así como la resolución de los datos. 
+     * 
+     * @return void
+     */
     public function test_User_Logins_Successfully()
     {
         $this->artisan('db:seed');
@@ -39,7 +61,15 @@ class AuthApiTest extends TestCase
                 ]
             ]);
     }
-
+     
+     /**
+      * test_Registers_Successfully
+      *
+      * Test encargado de testear la funcionalidad de registro correctamente, 
+      * así como una verificación del flujo y los datos devueltos
+      *
+      * @return void
+      */
      public function test_Registers_Successfully()
     {
         $payload = [
